@@ -22,6 +22,8 @@ tab,幻灯片，时间选择，手风琴。。。
 一切的一切，我觉得完全是一个填空的过程。所以，为啥不搭建一个空，填完了，一渲染，不就ok了么。。
 
 于是。。
+
+
   var tab = new widget({
 			tpl : '<ul class="nav">@#each list@<li><a>@title@</a><span>@date@</spam></li></ul>',
 			css : {
