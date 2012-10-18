@@ -24,7 +24,7 @@ tab,幻灯片，时间选择，手风琴。。。
 于是。。
 
 
-  var tab = new widget({
+      var tab = new widget({
 			tpl : '<ul class="nav">@#each list@<li><a>@title@</a><span>@date@</spam></li></ul>',
 			css : {
 				'.nav' : {
@@ -56,18 +56,23 @@ tab,幻灯片，时间选择，手风琴。。。
 
 他当然包含数据 包含html结构，包含css，包含事件绑定与相应的句柄。这样我填写完毕后，一个render 就可以用了。那么我需要什么东西呢？
 
-**为了减小耦合度，需要一个模块加载器加载tpl css event组件库,提供一些基本方法库(util.js，类似underscore)
-**我需要一个模板引擎，支持if 遍历 两种语法
-**css采用行内样式？采用addrule操纵样式表?
-**event只提供事件委托，但是是批量事件委托，不支持委托的事件？厄，用传统方式。。
-**selector 提供class与id的选择器，神马。。要支持css3选择器么？不是吧。。
+为了减小耦合度，需要一个模块加载器加载tpl css event组件库,提供一些基本方法库(util.js，类似underscore)
+
+我需要一个模板引擎，支持if 遍历 两种语法
+
+css采用行内样式？采用addrule操纵样式表?
+
+event只提供事件委托，但是是批量事件委托，不支持委托的事件？厄，用传统方式。。
+
+selector 提供class与id的选择器，神马。。要支持css3选择器么？不是吧。。
+
 那么我还需要一个东西来extend 这个对象，为了把事件绑定的函数加入进去
 
-**获取css的方法也同样重要，我需要来几个现成的，神马scroll啊，什么offset啊都要一份
+获取css的方法也同样重要，我需要来几个现成的，神马scroll啊，什么offset啊都要一份
 
-**util里面包含啥？ 必须要判断类型吧   必须要一个class跟extend工具吧，我靠怎么能少了each呢，当然some跟filter方法应该也要把！array里面怎么着得扩展个最大最小取位置去重复吧。。。。。
+util里面包含啥？ 必须要判断类型吧   必须要一个class跟extend工具吧，我靠怎么能少了each呢，当然some跟filter方法应该也要把！array里面怎么着得扩展个最大最小取位置去重复吧。。。。。
 
-**...我晕了。。。
+...我晕了。。。
 
 于是  我开始干活了。。。
 
