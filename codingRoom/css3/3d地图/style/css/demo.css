@@ -1,0 +1,57 @@
+
+.w960{width:960px;}
+.w1280{width:1280px;}
+.center{margin:0px auto;}
+.first{
+-webkit-transform: rotateX(-90deg) rotateY(0deg)
+}
+​.second{
+-webkit-transform: rotateX(-90deg) rotateY(0deg)
+}
+​.third{
+-webkit-transform: rotateX(-90deg) rotateY(90deg) translateZ(358px) translateX(203px)
+}
+.fourth{
+-webkit-transform: rotateX(-90deg) rotateY(90deg) translateZ(-360px) translateX(479px)
+	}
+
+body{font:12px/1.5 tahoma,'Microsoft Yahei',sans-serif; color:#333;
+background:url(../../images/wholebg.jpg);
+-webkit-transform-style: preserve-3d
+	}
+	#room{
+		/* 
+* StartColorStr 和 EndColorStr: 
+* #4c000000 是 30% 透明度的 #000000 的意思 
+* 组成: # + 透明度 + 颜色 
+* 算法: Math.floor(0.6 * 255).toString(16); 
+*/ 
+background:rgba(0, 0, 0, 0.6); 
+filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#99000000', EndColorStr='#99000000'); 
+	border:1px solid #000;
+	border-radius:10px;
+	box-shadow:4px 4px 14px black;
+	height:1000px;
+	-webkit-perspective : 99000px;
+	-webkit-transform: rotateX(60deg) rotateZ(40deg); -webkit-transform-style: preserve-3d; -webkit-transition: none; 
+	}
+	.dataBox{
+	-webkit-transform-origin: 50% 100%;
+-webkit-transition: none;
+box-shadow: 7px -2px 0px #2C2C2C;
+	height:280px;
+	border-radius:10px;
+	/* 
+* StartColorStr 和 EndColorStr: 
+* #4c000000 是 30% 透明度的 #000000 的意思 
+* 组成: # + 透明度 + 颜色 
+* 算法: Math.floor(0.6 * 255).toString(16); 
+*/ 
+background:rgba(0, 0, 0, 0.6); 
+filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#99000000', EndColorStr='#99000000'); 
+} 
+.map{
+	background:url(../../images/wholebg.jpg);
+	}
+	
+#dataBox ul li{border:1px solid #000;height:80px;}

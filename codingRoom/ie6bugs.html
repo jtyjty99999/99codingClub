@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript">
+var Sys = {}; 
+    var ua = navigator.userAgent.toLowerCase(); 
+    var s; 
+        (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] : 
+        (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] : 
+        (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] : 
+        (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] : 
+        (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;  
+          
+
+window.onload=function(){
+        //以下进行测试  
+        if(Sys.ie){if(Sys.ie.indexOf(6)>-1)alert('请享受ie6带来的快感吧!')}; 
+        if (Sys.firefox) alert('你的浏览器是:'+'Firefox: ' + Sys.firefox+'请用垃圾浏览器ie6观看效果！'); 
+        if (Sys.chrome) alert('你的浏览器是:'+'Chrome: ' + Sys.chrome+'请用垃圾浏览器ie6观看效果！'); 
+        if (Sys.opera) alert('你的浏览器是:'+'Opera: ' + Sys.opera+'请用垃圾浏览器ie6观看效果！'); 
+        if (Sys.safari) alert('你的浏览器是:'+'Safari: ' + Sys.safari+'请用垃圾浏览器ie6观看效果！'); 
+}
+	</script>
+	<title></title>
+	<style type="text/css">
+.clearfix:after {
+display: block;
+overflow: hidden;
+clear: both;
+height: 0;
+visibility: hidden;
+content: ".";
+}
+.clearfix{
+zoom:1;
+}
+	*{margin:0;
+	padding:0}
+	#hello1{
+	float:left;
+	margin-left:20px;
+	height:100px;
+	width:100px;
+	border:1px solid #000;
+	}
+	#hello2{
+	float:left;
+	margin-left:20px;
+	height:100px;
+	width:100px;
+	border:1px solid #000;
+	display:inline
+	}
+	.father{
+position:relative;
+	height:300px;
+	width:301px;
+	border:1px solid #000;
+	background:red;
+	}
+	.son{
+position:absolute;
+	height:100px;
+	width:100px;
+	border:1px solid #000;
+	top:0px;
+	right:0px;
+	}
+.a{ color:red !important; color:blue }
+.b{ color:red !important;}
+.b{color:blue}
+
+.libug li a {background:#CCC;border-bottom:1px #000 solid;text-decoration:none;display: block;}
+.libug li a:hover {background:#BBB;}
+.so li a {background:#CCC;border-bottom:1px #000 solid;text-decoration:none;display: block;zoom:1}
+.so li a:hover {background:#BBB;}
+.sel{position:relative;}
+.selmask{position:absolute;top:o;left:0;border:1px solid #000;width:100px;height:50px;}
+.selmask iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	border:none;
+	filter: mask();
+	width: 100px; /* for any big value */
+	height: 100px /* for any big value */
+}
+	</style>
+</head>
+<body>
+	<div class="box clearfix">双边距bug:display:inline<div id="hello1">	float:left;
+	margin-left:20px;
+	height:100px;
+	width:100px;
+	border:1px solid #000;</div></div>
+	<div class="box clearfix"><div id="hello2">display:inline</div></div>
+<br />
+<br />
+<br />
+<div class="box">1px bug.不要定义奇数宽度
+	<div class="father">position:relative;
+	height:300px;<br />
+	width:301px;<br />
+	border:1px solid #000;<br />
+	background:red;
+
+	<div class="son">position:absolute;
+	<p>height:100px;
+	width:100px;
+	border:1px solid #000;
+	top:0px;
+	right:0px;</p></div>
+	</div>
+<br />
+<br />
+<br />
+<div style="width:400px">
+  <div style="float:left"></div>
+   <input type="hidden" value="hidden" />
+ <div style="display:none;">hidden</div>
+  <div style="float:left;width:400px">display:none跟input:hidden文字溢出（下面亮了）</div>
+<p>以上把注释，隐藏域用div包起来即可解决</p>
+<br />
+<br />
+<br />
+<br />
+<div>盒模型问题
+<div style="position:relative; padding:20px; border:2px solid #F00;">position:relative; padding:20px; border:2px solid #F00;
+<div style="position:absolute; top:0; left:0; border:1px solid #690;">position:absolute; top:0; left:0; border:1px solid #690;</div>
+</div></div>
+<br />
+<br /<div>解决方法,hack- -
+<div style="position:relative; padding:20px; border:2px solid #F00;">
+<div style="position:absolute; top:0;left:0;_left:-20px; border:1px solid #690;">position:absolute; top:0;left:0; _left:-20px;border:1px solid #690;</div>
+</div></div>
+<br />
+<br />
+<br />
+<div>完全不认!important的bug<div class="a">
+hello!.a{ color:red !important; color:blue }
+</div>
+<div>解决方法 分开写<div class="b">
+hello!.b{ color:red !important;}
+.b{color:blue}
+</div>
+</div>
+<br />
+<br />
+<br />
+<div class="libug">li中锚点元素出现空行bug
+<ul>
+  <li><a href="#">我下面有诡异的空行</a></li>
+  <li><a href="#">我下面有诡异的空行</a></li>
+</ul>
+解决方法 zoom:1
+<div class="so">
+<ul>
+  <li ><a href="#">zoom:1</a></li>
+  <li ><a href="#">zoom:1</a></li>
+</ul>
+</div>
+</div>
+<br />
+<br />
+<br />
+<div class="box">ie6的position:fixed,写烂了的解决方法，性能也低。<a href="posfix.html"><span>见此</span></a></div>
+<br />
+<br />
+<br />
+<div class="box">select穿透bug<div class="sel"><div class="selmask"></div><select></select><select></select><select></select><select></select></div></div>
+<br />
+<br />
+<br />
+<div class="box">解决方法，增加一个iframe<div class="sel"><div class="selmask"> <!--[if lte IE 6.5]><iframe src="javascript:'';"></iframe><![endif]--></div><select></select><select></select><select></select><select></select></div></div>
+
+<br />
+<br />
+<br />
+<div class="box"><b>minheight,maxheight,maxwidth神马的，交给js吧</b>
+<pre>max Height
+
+function setMaxHeight(elementId, height){
+    var container = document.getElementById(elementId);
+    container.style.height = (container.scrollHeight > (height - 1)) ? height + "px" : "auto";
+}
+min Width
+
+function setMinWidth(elementId, width){
+    var container = document.getElementById(elementId);
+    container.style.width = (container.clientWidth < width) ? width + "px" : "auto";
+}
+max Width
+
+function setMaxWidth(elementId, width){
+    var container = document.getElementById(elementId);
+    container.style.width = (container.clientWidth > (width - 1)) ? width + "px" : "auto";
+}</pre>
+可以用一段css解决ie7没有min-height不伸展的问题，为了兼容ie6,加上高度即可
+<pre>/* min-height */
+.min-height:200px;height:auto;
+_height:200px; /* hack for ie6 */</pre>
+</div>
+ </body>
+</html>

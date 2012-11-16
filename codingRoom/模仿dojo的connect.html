@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+function connect(scope, fnFrom, fnTo) {
+	var scope = scope || window;
+	var fn = scope[fnFrom];
+		var t = function () {
+		return function () {
+			var ret = fn.apply(this, arguments);
+			fnTo.apply(this, arguments);
+			return ret;
+		}
+	}
+	scope[fnFrom] = t();
+}
+function a1(ha){
+alert(ha)
+}
+function a2(haa){
+alert(haa+'fuck you')
+}
+connect(window,'a1',a2,['hello'])
+//connect(window)
+	</script>
+</body>
+</html>

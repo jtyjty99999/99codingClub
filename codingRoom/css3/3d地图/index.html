@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>3d旋转</title>
+<link href="style/css/base.css" rel="stylesheet" type="text/css" />
+<link href="style/css/yui3-css-grid.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="style/css/demo.css" />
+<!-- html5.js for IE less than 9 -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div class="yui3-g w1280 center">
+<div class="yui3-u-1">
+</div>
+</div>
+<div class="yui3-g w960 center">
+    <div class="yui3-u-3-4" id = "room">
+		<div class="dataBox first"></div>
+		<div class="dataBox second" style="-webkit-transform: rotateX(-90deg) rotateY(0deg)"></div>
+		<div class="dataBox third" style="-webkit-transform: rotateX(-90deg) rotateY(90deg) translateZ(358px) translateX(203px)"></div>
+		<div class="dataBox fourth"></div>
+    </div>
+    <div class="yui3-u-1-4">
+        <div class="content ">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+function getTransform3D(obj){
+return window.getComputedStyle(ro,null)['webkitTransform'].match(/^matrix3d\((.+)\)/)[1].split(',')
+}
+var ro = document.getElementById('room')
+document.onmousedown = function(e){
+var e = e || window.event;
+var mx = e.clientX;
+var my = e.clientY;
+var rotateX = Math.acos(getTransform3D(ro)[10])/Math.PI*180;
+var rotateZ = Math.acos(getTransform3D(ro)[0])/Math.PI*180;
+document.onmousemove=function(e){
+var e = e || window.event;
+var runX = (e.clientX-mx)/20;
+var runY = (e.clientY-my)/10;
+var resultZ = runX+rotateZ;
+var resultX = runY+rotateX;
+
+ro.style.webkitTransform = 'rotateX('+resultX+'deg) rotateZ('+resultZ+'deg)';
+}
+document.onmouseup = function(e){
+document.onmousemove=null;
+}
+return false;
+}
+
+
+</script>
+</body>
+</html>

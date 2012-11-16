@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id = "mycanvas" width = "400" height = "300" style = "border 1px solid black"></canvas>
+	<script type="text/javascript">
+	var  c = document.getElementById('mycanvas');
+	var ctx = c.getContext('2d');
+	ctx.lineWidth =5;
+	ctx.strokeStyle='red';
+	ctx.beginPath();
+	ctx.arc(70,70,40,0,Math.PI*2,false);
+	ctx.stroke()
+	ctx.strokeStyle='blue';
+		ctx.beginPath();
+	ctx.arc(160,70,40,0,Math.PI*2,false);
+	ctx.stroke()
+	ctx.strokeStyle='yellow';
+		ctx.beginPath();
+	ctx.arc(250,70,40,0,Math.PI*2,false);
+	ctx.stroke()
+	ctx.strokeStyle='orange';
+		ctx.beginPath();
+	ctx.arc(110,110,40,0,Math.PI*2,false);
+	ctx.stroke()
+	ctx.strokeStyle='green';
+		ctx.beginPath();
+	ctx.arc(200,110,40,0,Math.PI*2,false);
+	ctx.stroke();
+	
+	
+	ctx.strokeStyle='red';
+		ctx.beginPath();
+	ctx.arc(70,70,40,0,Math.PI*1.9,Math.PI*2.1,false);
+	ctx.stroke()
+	ctx.strokeStyle='blue';
+		ctx.beginPath();
+	ctx.arc(160,70,40,0,Math.PI*0.9,Math.PI*2.1,false);
+	ctx.stroke()
+	ctx.strokeStyle='yellow';
+		ctx.beginPath();
+	ctx.arc(250,70,40,0,Math.PI*0.9,Math.PI*1.1,false);
+	ctx.stroke();
+	</script>
+</body>
+</html>

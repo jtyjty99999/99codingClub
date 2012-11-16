@@ -1,0 +1,358 @@
+﻿/*formContainer*/
+#formContainer {
+	width: 467px;
+	height: 381px;
+	margin: 20px auto;
+	position: relative;
+	-moz-perspective: 800px;
+	-webkit-perspective: 800px;
+	perspective: 800px;
+}
+#formContainer form {
+	background-color: #fff;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+	background-image: -webkit-linear-gradient(top, #fff, #eee);
+	background-image: -moz-linear-gradient(top, #fff, #eee);
+	background-image: -ms-linear-gradient(top, #fff, #eee);
+	background-image: -o-linear-gradient(top, #fff, #eee);
+	background-image: linear-gradient(top, #fff, #eee);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#fff, endColorstr=#eee);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#fff, endColorstr=#eee)";
+	height: 300px;
+	width: 407px;
+	padding: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	border-radius: 3px;
+	box-shadow:0 0 2px rgba(0, 0, 0, 0.2),0 1px 1px rgba(0, 0, 0, .2),0 3px 0 #fff,0 4px 0 rgba(0, 0, 0, .2),0 6px 0 #fff,0 7px 0 rgba(0, 0, 0, .2);
+	/*enabling 3d space for the transforms*/
+	-moz-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	/*when the forms are flipped, they will be hidden*/
+	-moz-backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;	
+	-moz-transition: 0.8s;
+	-webkit-transition: 0.8s;
+	transition: 0.8s;
+}
+#formContainer form::before {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	border: 1px dashed #ccc;
+	top: 5px;
+	bottom: 5px;
+	left: 5px;
+	right: 5px;
+	box-shadow: 0 0 0 1px #fff;
+}
+#login {
+	z-index: 100;
+}
+#signup {
+	z-index: 2;
+	opacity: 0;
+	/*rotating the recover password form by default*/
+	-moz-transform:rotateY(180deg);
+	-webkit-transform:rotateY(180deg);
+	transform:rotateY(180deg);
+}
+#formContainer.flipped #login {
+	opacity:0;
+	/*rotating the login form when the flipped class is added to the container*/
+	-moz-transform: rotateY(-180deg);
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+}
+#formContainer.flipped #signup {
+	opacity:1;
+	/*rotating the recover div into view*/
+	-moz-transform: rotateY(0deg);
+	-webkit-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+}
+#formContainer form h1{
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+	text-transform: uppercase;
+	text-align: center;
+	color: #666;
+	margin: 0 0 30px 0;
+	letter-spacing: 4px;
+	font: normal 26px/1 Verdana, Helvetica;
+	position: relative;
+}
+#formContainer form h1::after, 
+#formContainer form h1::before	{
+	background-color: #777;
+	content: "";
+	height: 1px;
+	position: absolute;
+	top: 15px;
+	width: 120px;
+}
+#formContainer form h1::after{
+	background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
+	background-image: -webkit-linear-gradient(left, #777, #fff);
+	background-image: -moz-linear-gradient(left, #777, #fff);
+	background-image: -ms-linear-gradient(left, #777, #fff);
+	background-image: -o-linear-gradient(left, #777, #fff);
+	background-image: linear-gradient(left, #777, #fff);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#777, endColorstr=#fff);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#777, endColorstr=#fff)";
+	right: 0;
+}
+#formContainer form h1::before	{
+	background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
+	background-image: -webkit-linear-gradient(right, #777, #fff);
+	background-image: -moz-linear-gradient(right, #777, #fff);
+	background-image: -ms-linear-gradient(right, #777, #fff);
+	background-image: -o-linear-gradient(right, #777, #fff);
+	background-image: linear-gradient(right, #777, #fff);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#777, endColorstr=#fff);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#777, endColorstr=#fff)";
+	left: 0;
+}
+#formContainer form fieldset	{
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	z-index:3;
+}
+#formContainer form legend {
+	display: none;
+}
+#formContainer form .control-group {
+	margin-top: 0;
+}
+.input-text  input{
+	background: #f1f1f1 url(../image/login-sprite.png) no-repeat;
+	padding: 15px 15px 15px 30px;
+	margin: 0 0 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 1px 1px #ccc inset, 0 1px 0 #fff;
+}
+#login-username,
+#signup-username	{
+	background-position: 5px 15px !important;
+}
+#login-password,
+#signup-password	{
+	background-position: 5px -34px !important;
+}
+#signup-email {
+	background-position: 7px -82px !important;
+}
+.input-text  input:focus	{
+	background-color: #fff;
+	border-color: #e8c291;
+	outline: none;
+	box-shadow: 0 0 0 1px #e8c291 inset;
+}
+.input-actions	.form-actions{
+	margin: 0;
+	padding: 0;
+	background: none;
+	border: none;
+}
+.input-actions .btn	{
+	background-color: #ffb94b;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fddb6f), to(#ffb94b));
+	background-image: -webkit-linear-gradient(top, #fddb6f, #ffb94b);
+	background-image: -moz-linear-gradient(top, #fddb6f, #ffb94b);
+	background-image: -ms-linear-gradient(top, #fddb6f, #ffb94b);
+	background-image: -o-linear-gradient(top, #fddb6f, #ffb94b);
+	background-image: linear-gradient(top, #fddb6f, #ffb94b);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#fddb6f, endColorstr=#ffb94b);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#fddb6f, endColorstr=#ffb94b)";
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #d69e31 #e3a037 #d5982d #e3a037;
+	float: left;
+	height: 35px;
+	padding: 0;
+	width: 120px;
+	cursor: pointer;
+	font: bold 15px Arial, Helvetica;
+	color: #8f5a0a;
+}
+.input-actions .btnt:hover,
+.input-actions .btn:focus		{
+	background-color: #fddb6f;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffb94b), to(#fddb6f));
+	background-image: -webkit-linear-gradient(top, #ffb94b, #fddb6f);
+	background-image: -moz-linear-gradient(top, #ffb94b, #fddb6f);
+	background-image: -ms-linear-gradient(top, #ffb94b, #fddb6f);
+	background-image: -o-linear-gradient(top, #ffb94b, #fddb6f);
+	background-image: linear-gradient(top, #ffb94b, #fddb6f);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#ffb94b, endColorstr=#fddb6f);
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffb94b, endColorstr=#fddb6f)";
+}
+.input-actions .btn:active {
+	outline: none;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
+}
+.input-actions	.form-actions a	{
+	color: #3151A2;
+	float: right;
+	line-height: 35px;
+	margin-left: 10px;
+	text-decoration: underline;
+}
+.input-actions .checkbox {
+	float: right;
+	margin-top: 10px;
+}
+/*loginBar*/
+.loginBar {
+	background: #ccc;
+	margin: auto;
+	height:0px;
+	overflow: hidden;
+	width: 100%;
+	-moz-transition: all 0.125s linear 0s;
+	-webkit-transition: all 0.125s linear 0s;
+	-o-transition: all 0.125s linear 0s;
+	-ms-transition: all 0.125s linear 0s;
+	transition: all 0.125s linear 0s;
+	box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.8), 0 1px 2px 2px rgba(0, 0, 0, 0.2);
+	border-bottom: 5px solid #1c252b;
+
+	background-color: #d9dee2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ebeef2), to(#d9dee2));
+	background-image: -webkit-linear-gradient(top, #ebeef2, #d9dee2);
+	background-image: -moz-linear-gradient(top, #ebeef2, #d9dee2);
+	background-image: -ms-linear-gradient(top, #ebeef2, #d9dee2);
+	background-image: -o-linear-gradient(top, #ebeef2, #d9dee2);
+	background-image: linear-gradient(top, #ebeef2, #d9dee2);
+}
+#topBar {
+	border: 0 none !important;
+	clip: rect(1px,1px,1px,1px);
+	height: 1px !important;
+	overflow: hidden !important;
+	position: absolute !important;
+	width: 1px !important;
+}
+[for="topBar"] {
+	-moz-transition: all 0.25s ease-out 0s;
+	-webkit-transition: all 0.25s ease-out 0s;
+	-o-transition: all 0.25s ease-out 0s;
+	-ms-transition: all 0.25s ease-out 0s;
+	transition: all 0.25s ease-out 0s;
+	cursor: pointer;
+	position: absolute;
+	top: 11px;
+	right: 10%;
+	z-index: 999;
+}
+[for="topBar"] span {
+	-moz-transition: all 0.125s linear 0s;
+	-webkit-transition: all 0.125s linear 0s;
+	-o-transition: all 0.125s linear 0s;
+	-ms-transition: all 0.125s linear 0s;
+	transition: all 0.125s linear 0s;
+	color: #FFFFFF;
+  font: 12px 'Kaushan Script',cursive;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6), 0 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+[for="topBar"] span:nth-of-type(1),
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2) {
+  padding:8px 10px;
+	border: none;
+	border-left:solid 1px rgba(0, 0, 0, 08);
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.3)), color-stop(100%,rgba(0, 0, 0, 0.5))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%,rgba(0, 0, 0, 0.5) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%,rgba(0, 0, 0, 0.5) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%,rgba(0, 0, 0, 0.5) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(0, 0, 0, 0.3) 0%,rgba(0, 0, 0, 0.5) 100%); /* W3C */
+	border-radius: 0 0 5px 0;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8) inset, 0 5px 0 0 rgba(0, 0, 0, 0.6), 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+[for="topBar"] span:nth-of-type(1):active ,
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2):active{
+	top:3px;
+	border-left-color:rgba(0,0,0,0.33);
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.13) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.13)), color-stop(100%,rgba(0, 0, 0, 0.3))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.13) 0%,rgba(0, 0, 0, 0.3) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.13) 0%,rgba(0, 0, 0, 0.3) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.13) 0%,rgba(0, 0, 0, 0.3) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(0, 0, 0, 0.13) 0%,rgba(0, 0, 0, 0.3) 100%); /* W3C */
+	box-shadow: 0 1px 0 rgba(0,0,0,0.33) inset, 0 5px 0 0 rgba(0, 0, 0, 0.3), 0 10px 5px rgba(0, 0, 0, 0.23);
+}
+
+[for="topBar"] span:nth-of-type(1)::before,
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2)::before {
+	background-color:rgba(0, 0, 0, 0.3);
+	content:"⇓";
+	width:35px;
+	position:absolute;
+	display:block;
+	padding-top:8px;
+	padding-bottom:6px;
+	top:-7px;
+	left:-36px;
+	border-right:1px solid rgba(0, 0, 0, 0.3);
+	background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.5)), color-stop(100%,rgba(0, 0, 0, 0.3))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.3) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.3) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.3) 100%); /* IE10+ */
+	background: linear-gradient(top, rgba(0, 0, 0, 0.5) 0%,rgba(0, 0, 0, 0.3) 100%); /* W3C */
+	border-radius: 0 0 0 5px;
+	box-shadow:0 1px 0 rgba(0, 0, 0, 0.9) inset, 0 5px 0 0 rgba(0, 0, 0, 0.7), 0 10px 5px rgba(0, 0, 0, 0.3);
+	text-align: center;
+	color: #FFFFFF;
+  font:20px/19px 'Kaushan Script',cursive
+}
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2)::before {
+	content:"⇑";
+	top: -1px;
+	padding-bottom: 9px;
+}
+[for="topBar"] span:nth-of-type(1):active::before,
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2):active::before {
+	box-shadow:inset 0px 1px 0px rgba(0,0,0,0.8), 0px 5px 0px 0px rgba(0,0,0,0.3), 1px 1px 0px 0px rgba(0,0,0,0.25), 2px 2px 0px 0px rgba(0,0,0,0.25), 2px 5px 0px 0px rgba(0,0,0,0.25), 6px 4px 2px rgba(0,0,0,0.25), 0px 10px 5px rgba(0,0,0,0.15) ;
+}
+
+[for="topBar"] span:nth-of-type(2) {
+  display: none;
+  visibility: hidden;
+}
+[for="topBar"] span:hover,
+[for="topBar"] span:hover::before {
+  color: #35CFD9;
+}
+#topBar:checked ~ .loginBar {
+  height: auto;
+}
+#topBar:checked ~ [for="topBar"] {
+  opacity: 1;
+	top: 426px;
+}
+#topBar:checked ~ [for="topBar"] span:nth-of-type(1) {
+  display: none;
+  visibility: hidden;
+}
+#topBar:checked ~ [for="topBar"] span:nth-of-type(2) {
+  display: block;
+  visibility: visible;
+}
+#topBar:checked ~ [for="topBar"] span:hover,
+#topBar:checked ~ [for="topBar"] span:hover::before {
+  color: #35CFD9;
+}

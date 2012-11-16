@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+<title></title>
+<style>
+body,div,ul,li{margin:0;padding:0;}
+ul{list-style-type:none;}
+body{background:#000;text-align:center;font:12px/20px Arial;}
+#box{width:492px;height:172px;background:#fff;border:8px solid #fff;margin:10px auto;}
+#box .list{width:490px;height:170px;overflow:hidden;border:1px solid #ccc;}
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <ul class="list">
+        <li ><img src="./img/01.jpg" width="490" height="170"></li>
+        <li ><img src="./img/02.jpg" width="490" height="170"></li>
+        <li ><img src="./img/03.jpg" width="490" height="170"></li>
+        <li ><img src="./img/04.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+        <li ><img src="./img/05.jpg" width="490" height="170"></li>
+    </ul>
+</div>
+<script type="text/javascript">
+/** 
+* @fileOverview 幻灯片0.000000001
+* @author 99(Tianyi)
+* @version 0.000000001
+* @description 复仇者联盟幻灯片.调用方式
+*	$.fn.slider999({
+*		animate : 'scroll',
+*		pointer : 'true',
+*		el : '#box',
+*		time : 3000
+*	});
+* @param {String} 幻灯片切换样式,默认为scroll,可选quake
+* @param {Boolean} pointer 是否显示,默认为true
+* @param {String} el 幻灯片元素容器，必选参数
+* @param {number} time 幻灯片的滚动间隔，默认为1000ms
+*/ 
+(function ($) {
+	// 定义插件
+	$.fn.slider999 = function (options) {
+		var opts = $.extend({}, $.fn.slider999.defaults, options);
+		var way = opts.animate;
+		if (opts.el === '' || opts.el === undefined) {
+			jQuery.error('幻灯片容器未指定！');
+			return
+		};
+		var $doc = $(document);
+		var $cBox = $(opts.el);
+		var $ul = $cBox.children('ul');
+		if ($cBox.css('position') !== 'absolute' && $cBox.css('position') !== 'relative') {
+			$cBox.css('position', 'relative');//确保这里有相对定位
+		}
+		$ul.addClass('stop');
+		var $childrenLi = $ul.children('li');
+		var ln = $childrenLi.first().outerHeight();
+		var wn = $childrenLi.first().outerWidth();
+		var childNum = $childrenLi.length - 1;
+		$ul.attr('now', 0);
+		var timer = setInterval(function () {
+				handle[way]($ul, childNum, ln);
+			}, opts.time);
+		//处理事件
+		$doc.delegate('.stop', 'mouseenter', function () {
+			clearInterval(timer)
+		});
+		$doc.delegate('.stop', 'mouseleave', function () {
+			timer = setInterval(function () {
+					handle[way]($ul, childNum, ln);
+				}, opts.time)
+		});
+		//造pointer
+		function createPointer(room, whole, w, l, callback) {
+			var html = '<ul id="counter">';
+			for (var i = whole; i--; ) {
+				html += '<li class="counterLi"><a class="presser">' + (whole - i) + '</a></li>'
+			}
+			html += '</ul>';
+			var height = l / 7;
+			var width = (w - whole * 10) / whole;
+			room.append($(html));
+			var $ulCount = $('#counter');
+			var $li = $ulCount.children('li');
+			$ulCount.css({
+				'position' : 'absolute',
+				'right' : 0,
+				'height' : height,
+				'width' : w,
+				'top' : l - height
+			})
+			$li.css({
+				'float' : 'left'
+			})
+			$li.children('a').css({
+				'display' : 'block',
+				'height' : height,
+				'line-height' : height + 'px',
+				'font-size' : '20px',
+				'width' : width,
+				'margin-right' : whole,
+				'background' : 'grey'
+			})
+			
+			$(document).delegate('.counterLi', 'mouseenter', function () {
+				var now = $(this).index();
+				handle[way]($ul, whole, ln, now - 1)
+			})
+			$(document).delegate('.presser', 'mouseenter', function () {
+				var now = $(this).css('background','blue')
+			})
+			$(document).delegate('.presser', 'mouseleave', function () {
+				var now = $(this).css('background','grey')
+			})
+		}
+		opts.pointer && createPointer($cBox, childNum + 1, wn, ln);
+	};
+	//可以自由增加幻灯片滚动方式神马的
+	var handle = {
+		scroll : function (el, whole, ln, now) {
+			var now = now !== undefined ? now : el.attr('now'); //防止等于0的情况
+			(now < whole) ? (
+				el.stop().animate({
+					'scrollTop' : ln * (parseInt(now) + 1)
+				}),
+				el.attr('now', parseInt(now) + 1)) : (
+				el.stop().animate({
+					'scrollTop' : 0
+				}),
+				el.attr('now', 0))
+		},
+		quake : function (el, whole, ln, now) {
+			var now = now !== undefined ? now : el.attr('now'); //防止等于0的情况
+			(now < whole) ? (
+				el.stop().animate({
+					'scrollTop' : ln * (parseInt(now) + 1) + 20
+				}, 'fast').animate({
+					'scrollTop' : ln * (parseInt(now) + 1) - 10
+				}, 'fast').animate({
+					'scrollTop' : ln * (parseInt(now) + 1) + 5
+				}, 'fast').animate({
+					'scrollTop' : ln * (parseInt(now) + 1)
+				}, 'fast'),
+				el.attr('now', parseInt(now) + 1)) : (
+				el.stop().animate({
+					'scrollTop' : 20
+				}, 'fast').animate({
+					'scrollTop' : 10
+				}, 'fast').animate({
+					'scrollTop' : 5
+				}, 'fast').animate({
+					'scrollTop' : 0
+				}, 'fast'),
+				el.attr('now', 0))
+		}
+	}
+	// 插件的defaults
+	$.fn.slider999.defaults = {
+		animate : 'scroll',
+		pointer : 'true',
+		el : '',
+		time : 6000
+	};
+})(jQuery);
+$.fn.slider999({
+	el : '#box'
+})
+</script>
+</body></html>

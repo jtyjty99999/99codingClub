@@ -1,0 +1,44 @@
+
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+	
+function customEvent() {
+	this.eventHandleList = [];
+}
+customEvent.prototype.trigger = function (news) {
+	this.eventHandleList.forEach(function (fn) {
+		fn.call(this, news)
+	})
+}
+function eventHandleFn(fn){
+this.fn = fn;
+}
+eventHandleFn.prototype.on = function(cusTomeventIn){
+cusTomeventIn.eventHandleList.push(this.fn)
+}
+function a (news){
+setTimeout(function(){alert(news+'触发了a函数')})
+
+}
+function b (news){
+setTimeout(function(){alert(news+'触发了b函数')})
+}
+
+var event1 = new customEvent()
+var event2 = new customEvent()
+var fn1 = new eventHandleFn(a)
+var fn2 = new eventHandleFn(b)
+fn1.on(event1)
+fn2.on(event1)
+fn2.on(event2)
+event1.trigger('event1！！')//触发了a,b函数
+event2.trigger('event2！！')//触发了b函数
+	</script>
+</body>
+</html>

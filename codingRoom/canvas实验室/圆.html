@@ -1,0 +1,19 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id = "mycanvas" width = "400" height = "300" style = "border 1px solid black"></canvas>
+	<script type="text/javascript">
+	var  c = document.getElementById('mycanvas');
+	var ctx = c.getContext('2d');
+	ctx.fillStyle='ff7f00';
+	ctx.beginPath();
+	ctx.arc(70,18,15,10,Math.PI*2,true)
+	ctx.closePath();
+	ctx.fill()
+	</script>
+</body>
+</html>

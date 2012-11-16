@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<div id="holder"><img src="jiujiu.jpg" alt="" id="photo" /></div>
+	<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript">
+Raphael(function () {
+    var img = document.getElementById("photo");
+    img.style.display = "none";
+    var r = Raphael("holder", 600, 540);
+    r.rect(0, 380, 600, 160).attr({
+        fill: "90-#fff-#f00:20-#000",//90度方向()
+    });
+});
+</script>
+	</body>
+</html>

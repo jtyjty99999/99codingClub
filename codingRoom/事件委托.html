@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	.box{
+	width:100px;
+	height:100px;
+	border:1px solid #000;
+	}
+	</style>
+	<script type="text/javascript">
+	function each(a, f) {
+                for (var i = 0; i < a.length; i++)
+                        f.call(a[i], i, a);
+        };
+var eop = {
+	addHandler : function (oElement, sEvent, fnHandler) {
+		oElement.addEventListener ? oElement.addEventListener(sEvent, fnHandler, false) : (oElement["_" + sEvent + fnHandler] = fnHandler, oElement[sEvent + fnHandler] = function () {
+			oElement["_" + sEvent + fnHandler]()
+		}, oElement.attachEvent("on" + sEvent, oElement[sEvent + fnHandler]))
+	},
+	removeHandler : function (oElement, sEvent, fnHandler) {
+		oElement.removeEventListener ? oElement.removeEventListener(sEvent, fnHandler, false) : oElement.detachEvent("on" + sEvent, oElement[sEvent + fnHandler])
+	},
+	addLoadHandler : function (fnHandler) {
+		this.addHandler(window, "load", fnHandler)
+	},
+	getEv : function (event) {
+		return event ? event : window.event;
+	},
+	getTarget : function (event) {
+		return event.target || event.srcElement;
+	},
+	delegate : function (worker, ev, group) {
+		each(group, function (i) {
+			eop.addHandler(worker, ev, eop.fns[group[i]['fn']] = function (event) {
+				event = eop.getEv(event);
+				var target = eop.getTarget(event);
+				(' ' + target.className.toLowerCase() + ' ')
+				.indexOf(' ' + group[i]['selector'] + ' ') !== -1 &&
+				group[i]['fn'](eop.getTarget(event));
+			})
+		})
+	},
+	fns : []
+}
+function hello() {
+	alert('go1')
+}
+function hello2() {
+	alert('go2')
+}
+function hello3(target){
+alert(target.className)
+}
+var group = [{
+		'selector' : 'niubi1',
+		'fn' : hello
+	}, {
+		'selector' : 'niubi2',
+		'fn' : hello2
+	}, {
+		'selector' : 'niubi3',
+		'fn' : hello3
+	}
+]
+window.onload=function(){
+eop.delegate(document,'click',group)
+}
+	</script>
+</head>
+<body>
+	<div class="niubi1 box"></div>
+	<div class="niubi2 box"></div>
+	<div class="niubi3 box"></div>
+	<pre>
+		function each(a, f) {
+                for (var i = 0; i < a.length; i++)
+                        f.call(a[i], i, a);
+        };
+var eop = {
+	addHandler : function (oElement, sEvent, fnHandler) {
+		oElement.addEventListener ? oElement.addEventListener(sEvent, fnHandler, false) : (oElement["_" + sEvent + fnHandler] = fnHandler, oElement[sEvent + fnHandler] = function () {
+			oElement["_" + sEvent + fnHandler]()
+		}, oElement.attachEvent("on" + sEvent, oElement[sEvent + fnHandler]))
+	},
+	removeHandler : function (oElement, sEvent, fnHandler) {
+		oElement.removeEventListener ? oElement.removeEventListener(sEvent, fnHandler, false) : oElement.detachEvent("on" + sEvent, oElement[sEvent + fnHandler])
+	},
+	addLoadHandler : function (fnHandler) {
+		this.addHandler(window, "load", fnHandler)
+	},
+	getEv : function (event) {
+		return event ? event : window.event;
+	},
+	getTarget : function (event) {
+		return event.target || event.srcElement;
+	},
+	delegate : function (worker, ev, group) {
+		each(group, function (i) {
+			eop.addHandler(worker, ev, eop.fns[group[i]['fn']] = function (event) {
+				event = eop.getEv(event);
+				var target = eop.getTarget(event);
+				(' ' + target.className.toLowerCase() + ' ')
+				.indexOf(' ' + group[i]['selector'] + ' ') !== -1 &&
+				group[i]['fn'](eop.getTarget(event));
+			})
+		})
+	},
+	fns : []
+}
+function hello() {
+	alert('go1')
+}
+function hello2() {
+	alert('go2')
+}
+function hello3(target){
+alert(target.className)
+}
+var group = [{
+		'selector' : 'niubi1',
+		'fn' : hello
+	}, {
+		'selector' : 'niubi2',
+		'fn' : hello2
+	}, {
+		'selector' : 'niubi3',
+		'fn' : hello3
+	}
+]
+window.onload=function(){
+eop.delegate(document,'click',group)
+}
+	</pre>
+</body>
+</html>

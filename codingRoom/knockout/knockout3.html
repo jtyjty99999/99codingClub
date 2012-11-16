@@ -1,0 +1,93 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="knockout-2.1.0.js"></script>
+	<style type="text/css">
+	.tips{
+	position:absolute;
+	display:block;
+	color:red;
+	top:-20px
+	}
+	.workList{
+	position:relative;
+	}
+	.textRoom{
+	display:inline-block;
+	}
+	</style>
+</head>
+<body>
+
+<h2>现在一共有： (<span data-bind="text: seats().length"></span>)个任务</h2>
+    <!-- Todo: Generate table body -->
+	<!-- 这里利用了style的数据绑定，把“修改”作为一个数据储存起来 
+	注意在数据模型下的数据取值不需要加，直接()，而全局vm类需要用$root
+	data-bind="value: firstName" 利用变量名字绑定值
+data-bind="text: fullName"  利用变量名字绑定text
+data-bind="click: capitalizeLastName" //绑定事件
+	-->
+<div data-bind="foreach: seats">
+    <div class="workList">
+		<div class="textRoom">
+			<input data-bind="value: name,visible: operation() !== '修改'" />
+			<span data-bind="visible: detailsEnabled,text: tip" class="tips" ></span>
+			<span data-bind="text: name,visible: operation() === '修改',event: { mouseover: enableDetails, mouseout: disableDetails }" /></span>
+		</div>
+		<a href="#" data-bind="click: $root.removeSeat">删除</a>
+        <a href="#" data-bind="text: operation,click: changeSeat">修改</a>
+    </div>    
+</div>  
+<!--  -->
+<form data-bind="submit: addSeat">
+    <input data-bind="value: newName" placeholder="请输入任务名" />
+    <input data-bind="value: newTip" placeholder="请输入任务完成时间" />
+    <button type = "submit" enable: seats().length < 5">新增任务</button>
+</form>
+
+	<script type="text/javascript">
+// Class to represent a row in the seat reservations grid
+function SeatReservation(name,status,tip,tipstatus) {
+	var self = this;
+	self.name = ko.observable(name);
+	self.tip = ko.observable(tip);
+	self.operation = ko.observable(status);//把“修改”作为一个状态，我仍然要观察这个状态
+	self.changeSeat = function (seat) {//注意了，这里的“修改”，是这个模块独有的，所以写到这里
+		self.operation() === "修改" ? (self.operation('完成')) : (self.operation('修改'));
+	}
+	self.detailsEnabled = ko.observable(tipstatus);
+    self.enableDetails = function() {
+            self.detailsEnabled(true);
+        },
+    self.disableDetails =function() {
+            self.detailsEnabled(false);
+        }
+}
+
+// Overall viewmodel for this screen, along with initial state
+function ReservationsViewModel() {
+	var self = this;
+	self.newName = ko.observable(); //这里我“观察”了 newName，一切需要告诉ui的东西都要“观察”
+	self.newTip = ko.observable(); 
+	self.seats = ko.observableArray([
+				new SeatReservation("Steve",'修改','牛逼人物',false),
+			]);//建立了一个seats数据的集合，而每个seats都是符合SeatReservation 类规定的结构的
+	self.addSeat = function () {
+		if (self.newName()) {
+			self.seats.push(new SeatReservation(this.newName(),'修改',this.newTip(),false));
+			self.newName("");
+			self.newTip("");
+		} else {
+			alert('请输入一个名字');
+		}
+	}//全局的add方法
+	self.removeSeat = function (seat) {
+		self.seats.remove(seat);
+	}//全局的remove
+}
+ko.applyBindings(new ReservationsViewModel());
+	</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+	
+	<head>
+		
+		<title>HTML5 Example</title>
+
+		<script src="js/TweenMax.min.js"></script>
+
+		<script>
+
+			function init() {
+				var r = document.getElementById("rusty");
+				TweenMax.to(r,1,{width:"+=250",ease:Elastic.easeOut,onComplete:done})
+			}
+			function done(){
+			alert('ok')
+			}
+		</script>
+
+	</head>
+
+	<body onload="init()">
+		
+		<img src="rusty.jpg" id="rusty" />
+		
+	</body>
+
+</html>

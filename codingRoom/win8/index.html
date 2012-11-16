@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><!-- for RTL change to: "he-IL" or "ar" ect. -->
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>The Square Grid - Example Code</title>
+	<link rel="stylesheet" href="css/squaregrid.css" />
+	<link rel="shortcut icon" href="images/sg_favicon.ico" /><!-- change it to your favicon -->
+	<style type="text/css">
+	.h112{height:112px;line-height:104px;}
+	.h56{height:56px;line-height:56px;color:black;font-size:14px;font-weight:bold;}
+	#example-d{margin-top:56px}
+    .blue{background:blue}
+	.yellow{background:yellow}
+	.orange{background:orange}
+	.red{background:red}
+	.green{background:green}
+    .white{background:white}
+	body{position:relative;}
+    #temp{opacity:0.3;filter:alpha(opacity=30);border 1px solid #fff}
+        </style>
+<script type="text/javascript">
+var midPos = [];//监听拖拽元素的坐标，class,id等信息
+function insertAfter(newElement, targetElement) {
+	var parent = targetElement.parentNode;
+	//console.log(parent)
+	if (parent.lastChild && parent.lastChild == targetElement) {
+		// 如果最后的节点是目标元素，则直接添加。因为默认是最后
+		parent.appendChild(newElement);
+	} else {
+		parent.insertBefore(newElement, targetElement.nextSibling);
+		//如果不是，则插入在目标元素的下一个兄弟节点 的前面。也就是目标元素的后面
+	}
+}
+function removeElement(_element) {//删除元素
+	var parentElement = _element.parentNode;
+	if (parentElement) {
+		parentElement.removeChild(_element);
+	}
+}
+function changeElement(a, b) {//交换元素
+	var a,
+	b;
+	var temp = a.cloneNode(true);
+	var parent = a.parentNode;
+	b = parent.replaceChild(temp,b)
+	parent.replaceChild(b,a)
+	parent.replaceChild(a,temp)
+	drag(a);//重新记录temp的坐标信息
+	temp = null;
+}
+function getNearest(arr, b) {
+	var arr,
+	b;
+        var p = 0;
+	var x = b.x - arr[0].x;
+	var y = b.y - arr[0].y
+		var l = Math.sqrt(x * x + y * y)
+		for (var i = 0; i < arr.length; i++) {
+			if (Math.sqrt((b.x - arr[i].x) * (b.x - arr[i].x) + (b.y - arr[i].y) * (b.y - arr[i].y)) < l) {
+				l = Math.sqrt((b.x - arr[i].x) * (b.x - arr[i].x) + (b.y - arr[i].y) * (b.y - arr[i].y));
+				p = i;
+			}
+		}
+		return p;
+}
+function getdragIndex(oDrag) {
+	for (var i = 0; i < midPos.length; i++) {
+		if (midPos[i].id == oDrag.id) {
+			return i
+		}
+	}
+}
+window.onload = function () {
+	
+	var oDrag1 = document.getElementById("block1");
+	var oDrag2 = document.getElementById("block2");
+	var oDrag3 = document.getElementById("block3");
+	var oDrag4 = document.getElementById("block4");
+	var oDrag5 = document.getElementById("block5");
+	var oDrag6 = document.getElementById("block6");
+	var oDrag7 = document.getElementById("block7");
+	var oDrag8 = document.getElementById("block8");
+	var oDrag9 = document.getElementById("block9");
+	var oDrag10 = document.getElementById("block10");
+	var oDrag11 = document.getElementById("block11");
+	var oDrag12 = document.getElementById("block12");
+	var oDrag13 = document.getElementById("list1");
+	var oDrag14 = document.getElementById("list2");
+	var oDrag15 = document.getElementById("list3");
+	var oDrag16 = document.getElementById("list4");
+	var oDrag17 = document.getElementById("list5");
+	drag(oDrag1);
+	drag(oDrag2);
+	drag(oDrag3);
+	drag(oDrag4);
+	drag(oDrag5);
+	drag(oDrag6);
+	drag(oDrag7);
+	drag(oDrag8);
+	drag(oDrag9);
+	drag(oDrag10);
+	drag(oDrag11);
+	drag(oDrag12);
+	drag(oDrag13);
+	drag(oDrag14);
+	drag(oDrag15);
+	drag(oDrag16);
+	drag(oDrag17);
+};
+
+function drag(oDrag) {
+	var x = oDrag.getBoundingClientRect().left + oDrag.offsetWidth / 2;
+	var y = oDrag.getBoundingClientRect().top + oDrag.offsetHeight / 2;
+	midPos.push({
+		'x' : x,
+		'y' : y,
+		'className' : oDrag.className,
+		'id' : oDrag.id
+	});
+	//console.log(midPos);
+	var zIndex = 1;
+	var disX = disY = 0;
+	oDrag.onmousedown = function (event) {
+		var event = event || window.event;
+		var target = event.target || event.srcElement;
+		var reg = /(?:^|\s)(sg-\d(_\d)?(\d)?)(?:$|\s)/;
+		var moveStart = target.className.match(reg)[1];
+		disX = event.clientX - this.getBoundingClientRect().left;
+		disY = event.clientY - this.getBoundingClientRect().top;
+		var oTemp = document.createElement("div");
+		oTemp["id"] = "temp";
+		oTemp.style.left = this.getBoundingClientRect().left + 'px';
+		oTemp.style.top = this.getBoundingClientRect().top + 'px';
+		oTemp.style.zIndex = zIndex++;
+		oTemp.style.position = 'absolute';
+		oTemp.style.backgroundColor = 'blue'
+		if (moveStart == 'sg-4') {
+			oTemp.style.width = '112px';
+			oTemp.style.height = '112px';
+			document.body.appendChild(oTemp);
+		} else if (moveStart == 'sg-8_5') {
+			oTemp.style.width = '238px';
+			oTemp.style.height = '112px';
+			document.body.appendChild(oTemp);
+		}else if(moveStart == 'sg-12'){
+			oTemp.style.width = '336px';
+			oTemp.style.height = '56px';
+			document.body.appendChild(oTemp);
+		}
+                function move(event){
+			var event = event || window.event;
+			var iL = event.clientX - disX;
+			var iT = event.clientY - disY;
+			var maxL = document.documentElement.clientWidth - oDrag.offsetWidth;
+			var maxT = document.documentElement.clientHeight - oDrag.offsetHeight
+			iL <= 0 && (iL = 0);
+			iT <= 0 && (iT = 0);
+			iL >= maxL && (iL = maxL);
+			iT >= maxT && (iT = maxT);
+			oTemp.style.left = iL + "px";
+			oTemp.style.top = iT + "px";
+			return false;
+                        setTimeout("document.onmousemove = move;",30);
+		};
+                
+		
+		document.onmousemove = function 
+		
+		document.onmouseup = function (event) {
+			var event = event || window.event;
+			var b = {
+				x : event.clientX,
+				y : event.clientY
+			}
+			document.onmousemove = null;
+			document.onmouseup = null;
+			var dropIndex = getNearest(midPos, b);
+			var drop = midPos[dropIndex];
+			var oDrop = document.getElementById(drop.id);
+			//交换前删除drag元素原有位置信息
+			var dragIndex = getdragIndex(oDrag);
+			//console.log(midPos[dragIndex]);
+			midPos.splice(dragIndex, 1); //删除原有坐标信息
+			//console.log(midPos);
+			changeElement(oDrag, oDrop);
+			//交换后drop元素更新位置信息;
+			var newX = oDrop.getBoundingClientRect().left + oDrop.offsetWidth / 2;
+			var newY = oDrop.getBoundingClientRect().top + oDrop.offsetHeight / 2;
+			drop.x = newX;
+			drop.y = newY;
+
+	
+	
+			/*			oDrag.style.left = oTemp.style.left;
+			
+			oDrag.style.top = oTemp.style.top;
+			
+			oDrag.style.zIndex = oTemp.style.zIndex;*/
+			
+			document.body.removeChild(oTemp);
+			oDrag.releaseCapture && oDrag.releaseCapture()
+		};
+		
+		this.setCapture && this.setCapture();
+		
+		return false
+	}
+}
+</script>
+
+</head>
+
+<body>
+
+	<div id="wrapper"><!-- you need both the wrapper and container -->
+		<div id="container">
+		
+			<!-- Just an example of a layout, so you can see how it works. -->
+			<!-- Please delete this line once you're done. --><style>#example-a, #example-b, #example-c, #example-d1, #example-d2{background:yellow; height:800px; margin-top:14px;filter:alpha(opacity=50); -moz-opacity:0.5; -khtml-opacity: 0.5; opacity: 0.5}</style>
+			<div id="example-d" class="sg-34 sgParent">
+				<div id="example-d1" class="sg-20 sgParent">
+                                	<div id="block1" class="sg-4 h112 blue"></div>
+                                  	<div id="block2" class="sg-4 h112 orange"></div>
+                                        <div id="block3" class="sg-8_5 h112 red"></div>
+                                	<div id="block4" class="sg-8_5 h112 blue"></div>
+                                        <div id="block5" class="sg-4 h112 orange"></div>
+                                        <div id="block6" class="sg-4 h112 blue"></div>
+                                        <div id="block7" class="sg-4 h112 green"></div>
+                                        <div id="block8" class="sg-4 h112 blue"></div>
+                                        <div id="block9" class="sg-4 h112 green"></div>
+                                        <div id="block10" class="sg-4 h112 red"></div>
+                                        <div id="block11" class="sg-8_5 h112 orange"></div>
+                                	<div id="block12" class="sg-8_5 h112 blue"></div>
+                                </div>
+				<div id="example-d2" class="sg-13">
+                                	<div id="list1" class="sg-12 h56 green">list1</div>
+                                	<div id="list2" class="sg-12 h56 blue">list1</div>
+                                	<div id="list3" class="sg-12 h56 red">list1</div>
+                                	<div id="list4" class="sg-12 h56 orange">list1</div>
+                               		<div id="list5" class="sg-12 h56 white">list1</div>
+				</div>
+                 	 </div>
+			
+		</div><!-- end #container -->
+	</div><!-- end #wrapper -->
+
+
+	<!-- You may use this controller to switch between grid views.  -->
+	<div id="controller">
+		<ul>
+			<li><a class="x" href="#">X</a></li>
+			<li><a class="xy" href="#">&amp;</a></li>
+			<li><a class="y" href="#">Y</a></li>
+			<li class="selected"><a class="sub" href="#">¼</a></li>
+			<li><a class="none" href="#">&Oslash;</a></li>
+		</ul>
+	</div><!-- end #controller div -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script><!-- calll jQuery -->
+	<script type="text/javascript"><!-- begin controller javascript -->
+		$(document).ready(function(){ $("#controller ul li a").click(function () { var className = $(this).attr('class'); $('#wrapper').css("background-image", "url(images/sg_grid_" + className + ".png)"); $("#controller ul li").removeClass('selected'); $(this).parent().addClass('selected'); }); });
+	</script>
+	
+</body>
+</html>

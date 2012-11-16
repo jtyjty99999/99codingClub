@@ -1,0 +1,295 @@
+﻿<!DOCTYPE HTML>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Official Website Template | Home Page</title>
+  <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<style type="text/css">
+	body{background-color:#212121;font-family:"Microsoft YaHei",微软雅黑,"MicrosoftJhengHei",华文细黑,STHeiti,MingLiu}
+	/* WRAPPER */
+#wrapper { width:960px; margin:40px auto; }
+
+/* CONTENT */
+/* MOVIE POSTERS */
+#movieposters { list-style:none; margin:100px 0; height:550px; }
+#movieposters li { display:inline; float:left;
+	-webkit-perspective: 500; -webkit-transform-style: preserve-3d;
+	-webkit-transition-property: perspective; -webkit-transition-duration: 0.5s; }
+#movieposters li:hover { -webkit-perspective: 5000; }
+	
+#movieposters li img { border:10px solid #fcfafa; -webkit-transform: rotateY(30deg);
+	-moz-box-shadow:0 3px 10px #888; -webkit-box-shadow:0 3px 10px #888;
+	-webkit-transition-property: transform; -webkit-transition-duration: 0.5s; }
+#movieposters li:hover img { -webkit-transform: rotateY(0deg); }
+
+.movieinfo { border:10px solid #fcfafa; padding:5px 20px; width:200px; height:120px; background-color:#deddcd; margin:-195px 0 0 55px; position:absolute;
+	-moz-box-shadow:0 20px 40px #888; -webkit-box-shadow:0 20px 40px #888;
+	-webkit-transform: translateZ(30px) rotateY(30deg);
+	-webkit-transition-property: transform, box-shadow, margin; -webkit-transition-duration: 0.5s; }
+	
+#movieposters li:hover .movieinfo { -webkit-transform: rotateY(0deg); -webkit-box-shadow:0 5px 10px #888; margin:-175px 0 0 30px; }
+	
+.movieinfo h3 { color:#7a3f3a; font-variant: small-caps; font-family:Georgia,serif,Times; text-align:center; padding-bottom:15px; }
+.movieinfo p { padding-bottom:15px; }
+.movieinfo a { background-color:#7a3f3a; padding:5px 10px; color:#eee; text-decoration:none; display:block; width:80px; text-align:center; margin:0 auto;
+	-moz-border-radius:5px; -webkit-border-radius:5px; }
+.movieinfo a:hover, .movieinfo a:focus { background-color:#6a191f; color:#fff; }
+	/* menu */
+#nav,#nav ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#nav {
+    background: url('image/menu_bg.png') no-repeat scroll 0 0 transparent;
+			 background:-webkit-linear-gradient(top,rgba(200,200,200,0.1) 0%,rgba(200,200,200,0.1) 50%,#222 50%,#222);
+  background:-moz-linear-gradient(top,rgba(200,200,200,0.1) 0%,rgba(200,200,200,0.1) 50%,#222 50%,#222);
+  background:-o-linear-gradient(top,rgba(200,200,200,0.1) 0%,rgba(200,200,200,0.1) 50%,#222 50%,#222);
+  background:-ms-linear-gradient(top,rgba(200,200,200,0.1) 0%,rgba(200,200,200,0.1) 50%,#222 50%,#222);
+  background:linear-gradient(top,rgba(200,200,200,0.1) 0%,rgba(200,200,200,0.1) 50%,#222 50%,#222);
+border-radius: 8px;
+    clear: both;
+    font-size: 18px;
+    height: 48px;
+    padding: 0 0 0 9px;
+    position: relative;
+    width: 680px;
+	padding: 4px;
+	box-shadow: 0 7px 0 #0B0B0B;
+}
+#nav li {
+    background: url('image/menu_line.png') no-repeat scroll right 5px transparent;
+    float: left;
+    position: relative;
+}
+#nav li:nth-of-type(6){
+    background:none;
+}
+#nav li a {
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-weight: normal;
+    height: 30px;
+    padding: 15px 20px 0;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px #000000;
+}
+#nav li:hover > a {
+    color: #00B4FF;
+		-moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+#nav li:hover, #nav a:focus, #nav a:hover, #nav a:active {
+    outline: 0 none;
+}
+#nav ul li {
+    background: none;
+    width: 100%;
+}
+#nav ul li a {
+    float: none;
+}
+#nav li:hover > .sub-menu {
+	-moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    transition: all 500ms ease;
+    background:rgba(0, 0, 0, 0.6); 
+	opacity:1
+}
+#lavalamp {
+    background: url('image/lavalamp.png') no-repeat scroll 0 0 transparent;
+    height: 16px;
+    left: 30px;
+    position: absolute;
+    top: 0px;
+    width: 64px;
+
+    -moz-transition: all 300ms ease;
+    -ms-transition: all 300ms ease;
+    -o-transition: all 300ms ease;
+    -webkit-transition: all 300ms ease;
+    transition: all 300ms ease;
+}
+#lavalamp:hover {
+    -moz-transition-duration: 3000s;
+    -ms-transition-duration: 3000s;
+    -o-transition-duration: 3000s;
+    -webkit-transition-duration: 3000s;
+    transition-duration: 3000s;
+}
+#nav li:nth-of-type(1):hover ~ #lavalamp {
+    left: 30px;
+}
+#nav li:nth-of-type(2):hover ~ #lavalamp {
+    left: 140px;
+}
+#nav li:nth-of-type(3):hover ~ #lavalamp {
+    left: 252px;
+}
+#nav li:nth-of-type(4):hover ~ #lavalamp {
+    left: 364px;
+}
+#nav li:nth-of-type(5):hover ~ #lavalamp {
+    left: 476px;
+}
+#nav li:nth-of-type(6):hover ~ #lavalamp {
+    left: 588px;
+}
+#nav .sub-menu {
+	position: absolute;
+	right: 0;
+	left: -1px;
+	top: 100%;
+	border-radius: 0 0 5px 5px;
+	box-shadow: 0 1px 0 rgba(0,0,0,1),0 2px 0 rgba(0,0,0,1),0 3px 0 rgba(0,0,0,1);
+	background-color: #d9e0e5; /* Old browsers */
+	background-color: #121212;
+	background:rgba(0, 0, 0, 0); 
+	opacity:0
+}
+
+	</style>
+  <script src="js/modernizr-2.5.3.min.js"></script>
+	<!--[if lt IE 9]>
+   	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+</head>
+<body>
+	<input type="checkbox" role="button" id="topBar"/>
+	<label for="topBar" onclick="">
+		<span>登陆 | 注册</span>
+		<span>登陆 | 注册</span>
+	</label>
+	<aside id="loginWrap" class="loginBar" role="loginBar">
+		<section class="container">
+			<div id="formContainer">
+				<form action="./" method="post" id="login" class="form-horizontal">
+					<h1>我的道客</h1>
+					<fieldset class="input-text">
+						<legend>LogIn</legend>
+						<div class="control-group">
+							<input type="text" required="" autofocus="" placeholder="请输入姓名" id="login-username" class="span4">   
+							<input type="password" required="" placeholder="请输入密码" id="login-password" class="span4">
+						</div>						
+					</fieldset>
+					<fieldset class="input-actions">
+						<legend>Login Actions</legend>
+						<div class="form-actions">
+							<input type="submit" value="登入" id="signup-submit" class="btn signupBtn">
+							<a>忘记密码?</a><a href="#" id="flipToSignup" class="flipLink" data-original-title="点击注册" rel="tooltip">注册</a>
+						</div>
+					</fieldset>
+				</form>
+				<!-- End Login from -->
+				<form action="./" method="post" id="signup" class="form-horizontal">
+					<h1>Sign Up</h1>
+					<fieldset class="input-text">
+						<legend>注册</legend>
+						<div class="control-group">
+							<input type="text" required="" autofocus="" placeholder="请输入姓名" id="signup-username" class="span4">  
+							<input type="text" required="" autofocus="" placeholder="请输入密码" id="signup-email" class="span4">  	
+							<input type="password" required="" placeholder="请再次输入相同密码" id="signup-password" class="span4">
+						</div>
+					</fieldset>
+					<fieldset class="input-actions">
+						<legend>Sign up Actions</legend>
+						<div class="form-actions">
+							<input type="submit" value="Sign up" id="login-submit" class="btn loginBtn">
+							<a href="#" id="flipToLogin" rel="tooltip" class="flipLink" data-original-title="点击登入">登入</a>
+							<label class="checkbox" for="optionsCheckbox2"> 
+                <input type="checkbox" disabled="" value="option1" id="optionsCheckbox2">
+                我同意《道客.me服务条款》
+              </label>							
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</section>
+	</aside>
+	<!-- End Login Bar Content -->
+	<header id="header" role="header">
+		<section class="container">
+			<ul id="nav">
+                <li><a href="#">我的主页</a>
+					<ul class="sub-menu">
+						<li><a href="#">我的资料</a></li>
+						<li><a href="#">随车号簿</a></li>
+						<li><a href="#">我的设置</a></li>
+					</ul>
+				</li>
+                <li><a href="#">我的爱车</a>
+					<ul class="sub-menu">
+						<li><a href="#">爱车信息</a></li>
+						<li><a href="#">汽车新闻</a></li>
+						<li><a href="#">违章查询</a></li>
+					</ul>
+				</li>
+                <li><a href="#">我的轨迹</a></li>
+                <li><a href="#">我的言行</a></li>
+                <li><a href="#">我的圈子</a></li>
+                <li><a href="#">我的荣誉</a></li>
+                <div id="lavalamp"></div>
+            </ul>
+		</section>
+	</header>
+	<!-- End Header Content -->
+<div id="wrapper">
+	<div id="content">
+		<ul id="movieposters">
+			<li>
+				<img src="./image/01_iron_man_2.jpg" alt="Iron Man 2">
+				<div class="movieinfo">
+					<h3>我的爱车</h3>
+					<p>With the world now aware ...</p>
+					<a href="http://www.imdb.com/title/tt1228705/" title="Iron Man 2">More info</a>
+				</div>
+			</li>
+			<li>
+				<img src="./image/02_the_last_airbender.jpg" alt="The Last Airbender">
+				<div class="movieinfo">
+					<h3>The Last Airbender</h3>
+					<p>The story follows the adv...</p>
+					<a href="http://www.imdb.com/title/tt0938283/" title="Iron Man 2">More info</a>
+				</div>
+			</li>
+			<li>
+				<img src="./image/03_tron_legacy.jpg" alt="Tron Legacy">
+				<div class="movieinfo">
+					<h3>Tron Legacy</h3>
+					<p>Sam Flynn, th...</p>
+					<a href="http://www.imdb.com/title/tt1104001/" title="Tron Legacy">More info</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+	<!-- End Main Content -->
+	<footer id="footer" role="footer">
+		<section class="container">
+			footer content
+		</section>
+	</footer>
+
+	<script src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap-tooltip.js"></script>
+	<script type="text/javascript" src="js/fliplink.js"></script>
+	<script type="text/javascript" src="js/page.js"></script>
+</body>
+</html>

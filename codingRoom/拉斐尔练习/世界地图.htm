@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)http://raphaeljs.com/world/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>世界地图</title>
+        <script src="./raphael.js"></script>
+        <script src="./world.js"></script>
+        <script>
+Raphael(10, 10, 1000, 400, function () {
+	var r = this;
+	r.circle(0, 0, 1000).attr({
+		stroke : "none",
+		fill : "r(0.25, 0.75)black-red"
+	});
+	r.setStart();
+	var hue = Math.random();
+	for (var country in worldmap.shapes) {
+		r.path(worldmap.shapes[country]).attr({
+			stroke : "black",
+			fill : "#f0efeb",
+			"stroke-opacity" : 0.6
+		}).data('country',worldmap.names[country]).click(function () {
+			alert(this.data("country"))
+		});
+	}
+	var world = r.setFinish();
+	world.hover(function () {
+		this.c = this.c || this.attr("fill");
+		this.stop().animate({
+			fill : "red"
+		}, 500);
+	}, function () {
+		this.stop().animate({
+			fill : this.c
+		}, 500);
+	});
+});
+        </script>
+    </head>
+    <body>
+      </body></html>

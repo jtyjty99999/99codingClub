@@ -1,0 +1,38 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="knockout-2.1.0.js"></script>
+</head>
+<body>
+<!-- This is a *view* - HTML markup that defines the appearance of your UI -->
+<!--
+data-bind="value: firstName" 利用变量名字绑定值
+data-bind="text: fullName"  利用变量名字绑定text
+data-bind="click: capitalizeLastName" //绑定事件
+-->
+<p>First name: <input data-bind="value: firstName" /></p>
+<p>Last name: <input data-bind="value: lastName" /></p>
+<p>Full name: <strong data-bind="text: fullName"></strong></p>
+<button data-bind="click: capitalizeLastName">Go caps</button>
+	<script type="text/javascript">
+	// This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+	function AppViewModel() {
+		this.firstName = ko.observable("Bert"); //观察firstName的变动
+		this.lastName = ko.observable("Bertington"); //观察lastname的变动
+		this.lastName('hello') //这样可以直接赋值
+		this.fullName = ko.computed(function () {
+				return this.firstName() + " " + this.lastName();
+			}, this);
+		this.capitalizeLastName = function () {
+			var currentVal = this.lastName(); //可以直接取值     
+			this.lastName(currentVal.toUpperCase()); // 将处理后的值写回lastName
+		};
+	}
+	
+	// Activates knockout.js
+	ko.applyBindings(new AppViewModel()); //激活knockout.js
+	</script>
+</body>
+</html>

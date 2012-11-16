@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id = "mycanvas" width = "400" height = "300" style = "border 1px solid black"></canvas>
+	<script type="text/javascript">
+	var  c = document.getElementById('mycanvas');
+	var ctx = c.getContext('2d');
+	ctx.moveTo(20,20);
+	ctx.lineTo(20,90);
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(40,20);
+	ctx.lineTo(40,90)
+	ctx.lineTo(80,90)
+	ctx.closePath();
+	ctx.fill();
+	ctx.strokeRect(100,20,70,70)
+	ctx.fillstyle='#00ff00'
+	ctx.fillRect(150,20,50,50)
+	</script>
+</body>
+</html>

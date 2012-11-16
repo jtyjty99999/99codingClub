@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选择框</title>
+<style type="text/css">
+.wrap{
+	margin:0 auto;
+	width:400px;
+	overflow:auto;
+	}
+.box{
+	display:inline-block;
+	*display: inline;
+	zoom: 1;
+	}
+.choose{
+	width:100px;
+	height:200px;
+	}
+button {
+display:block;
+}
+</style>
+</head>
+
+<body>
+	<div class="wrap">
+  	<select class="box choose" multiple="multiple" id="room1">
+    	<option class="optionOption" room="room1">xhtml+css技术</option>
+      <option class="optionOption" room="room1">css3</option>
+      <option class="optionOption" room="room1">jquery</option>
+      <option class="optionOption" room="room1">javascript</option>
+      <option class="optionOption" room="room1">html5</option>
+    </select>
+    <div class="box">
+    	<button id="oneToTwo">&gt;|</button>
+      <button id="goTight">&gt;&gt;</button>
+      <button id="goLeft">&lt;&lt;</button>
+      <button id="twoToOne">|&lt;</button>
+    </div>
+    <select class="box choose" multiple="multiple" id="room2">
+    	<option class="optionOption" room="room2">xhtml+css技术</option>
+      <option class="optionOption" room="room2">css3</option>
+      <option class="optionOption" room="room2">jquery</option>
+      <option class="optionOption" room="room2">javascript</option>
+      <option class="optionOption" room="room2">html5</option>
+    </select>
+  </div>
+<script type="text/javascript">
+ var evHandle = {
+ 	on : function (el, ev, fn) {
+ 		el.addEventListener ? el.addEventListener(ev, fn, false) : (el["_" + ev + fn] = fn, el[ev + fn] = function () {
+ 			el["_" + ev + fn]()
+
+ 		}, el.attachEvent("on" + ev, el[ev + fn]))
+
+ 	},
+ 	getEv : function (event) {
+ 		return event ? event : window.event;
+
+ 	},
+ 	getTarget : function (event) {
+ 		return event.target || event.srcElement;
+
+ 	}
+
+ }
+
+ function rmnode(_element) {
+ 	var parentElement = _element.parentNode;
+ 	var node;
+ 	if (parentElement) {
+ 		node = parentElement.removeChild(_element);
+ 	}
+ 	return node;
+ }
+ function getId(elName) {
+ 	return document.getElementById(elName);
+ }
+ function a(target) {
+ 	var node = rmnode(target);
+ 	var room = target.getAttribute('room');
+ 	var nextRoom;
+ 	var foofoo = room.indexOf(2);
+ 	var num = foofoo === -1 ? '2' : '1';
+ 	nextRoom = foofoo === -1 ? 'room2' : 'room1';
+ 	node.setAttribute('room', 'room' + num);
+ 	console.log(nextRoom);
+ 	getId(nextRoom).appendChild(node);
+ }
+ function b(target) {
+ 	target.selected = "true";
+ }
+ function c(a, b) {
+ 	var pe = getId(a);
+ 	var ce = pe.childNodes;
+ 	var otherPe = getId(b);
+	 for (var l = ce.length; l--; ) {
+ 		ce[l].nodeType==1&&otherPe.appendChild(ce[l])
+ 	}
+ 	pe.innerHTML = '';
+ 	gogogo(b);
+ }
+ var options = document.getElementsByTagName('option');
+ function gogogo(room) {
+ 	for (var l = options.length; l--; ) {
+ 		options[l].setAttribute('room', room);
+ 	}
+ }
+ function b(room1, room2) {
+ 	var options = getId(room1).getElementsByTagName('option')
+ 		for (var l = options.length; l--; ) {
+ 			options[l].selected == true && getId(room2).appendChild(rmnode(options[l]))
+ 		}
+ }
+
+ var b1 = getId('oneToTwo');
+ var b2 = getId('goTight');
+ var b3 = getId('goLeft');
+ var b4 = getId('twoToOne');
+ evHandle.on(b1,'click',function () {
+ 	c('room1', 'room2');
+ });
+ evHandle.on(b2, 'click', function () {
+ 	b('room1', 'room2');
+ });
+ evHandle.on(b3, 'click', function () {
+ 	b('room2', 'room1');
+ });
+ evHandle.on(b4, 'click', function () {
+ 	c('room2', 'room1');
+ });
+document.ondblclick = function (event) {
+ 		var eve = event || window.event;
+ 		var target = eve.target || eve.srcElement;
+ 		switch (target.className) {
+ 		case 'optionOption':
+ 			a(target);
+ 			break;
+		case 'box choose':
+ 			simOptionClick4IE();
+ 			break;
+ 		}
+ }
+ /*修正ie的select*/
+ function simOptionClick4IE(){ 
+    var evt=window.event  ;  
+    var selectObj=evt?evt.srcElement:null;  
+    // IE Only  
+            // 记录原先的选中项  
+            var oldIdx = selectObj.selectedIndex; 
+            setTimeout(function(){  
+                var option=selectObj.options[selectObj.selectedIndex];  
+                	var node = rmnode(option);
+                	var room = option.getAttribute('room');
+                	var nextRoom;
+                	var foofoo = room.indexOf(2);
+                	var num = foofoo === -1 ? '2' : '1';
+                	nextRoom = foofoo === -1 ? 'room2' : 'room1';
+                	node.setAttribute('room', 'room' + num);
+                	//console.log(nextRoom);
+                	getId(nextRoom).appendChild(node);
+            }, 60);  
+}  
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	#demo {
+    width: 200px;
+    height: 200px;
+    background: #fa9;
+}
+#demo:hover {
+    -o-animation-name: -o-sway;
+    -o-animation-duration: .5s;
+    -o-animation-iteration-count: 2;
+    -o-animation-timing-function: linear; 
+    
+    -ms-animation-name: -ms-sway;
+    -ms-animation-duration: .5s;
+    -ms-animation-iteration-count: 2;
+    -ms-animation-timing-function: linear;  
+    
+    -moz-animation-name: -moz-sway;
+    -moz-animation-duration: .5s;
+    -moz-animation-iteration-count: 2;
+    -moz-animation-timing-function: linear;  
+    
+    -webkit-animation-name: -webkit-sway;
+    -webkit-animation-duration: .2s;
+    -webkit-animation-iteration-count: 2;
+    -webkit-animation-timing-function: linear; 
+
+}
+@-o-keyframes -o-sway {
+    0%   { -o-transform: rotate(0deg); }
+    25%  { -o-transform: rotate(15deg); }
+    50%  { -o-transform: rotate(0deg); }
+    75%  { -o-transform: rotate(-15deg); }
+    100% { -o-transform: rotate(0deg); }
+}
+@-ms-keyframes -ms-sway {
+    0%   { -ms-transform: rotate(0deg); }
+    25%  { -ms-transform: rotate(15deg); }
+    50%  { -ms-transform: rotate(0deg); }
+    75%  { -ms-transform: rotate(-15deg); }
+    100% { -ms-transform: rotate(0deg); }
+}
+@-moz-keyframes -moz-sway {
+    0%   { -moz-transform: rotate(0deg); }
+    25%  { -moz-transform: rotate(15deg); }
+    50%  { -moz-transform: rotate(0deg); }
+    75%  { -moz-transform: rotate(-15deg); }
+    100% { -moz-transform: rotate(0deg); }
+}
+@-webkit-keyframes -webkit-sway {
+    0%   { -webkit-transform: translate(0px, 0px); }
+    11%   { -webkit-transform: translate(5px, 0px); }
+    22%  { -webkit-transform: translate(5px, 5px); }
+    33%  { -webkit-transform: translate(0px, 5px); }
+    44%  { -webkit-transform: translate(-5px, 5px); }
+    55% { -webkit-transform: translate(-5px, 0px); }
+    66% { -webkit-transform: translate(-5px, -5px); }
+    77% { -webkit-transform: translate(0px, -5px); }
+    88% { -webkit-transform: translate(5px, -5px); }
+    100% { -webkit-transform: translate(0px, 0px); }
+}​
+	</style>
+</head>
+<body>
+	<div id="demo"></div>​
+</body>
+</html>

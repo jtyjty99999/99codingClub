@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	
+	<head>
+		
+		<title>HTML5 Example</title>
+
+		<script src="js/TweenMax.min.js"></script>
+
+		<script>
+
+			var ctx, img;
+
+			function init() {
+				ctx = document.getElementById("canvas").getContext("2d");
+				img= new Image();
+				img.src = 'enemy.png';
+				img.xP = 50;
+				img.yP = 50;
+				img.onload=function(){
+				TweenLite.ticker.addEventListener("tick",loop)
+				}
+				
+				TweenMax.to(img,1,{xP:500,yP:500,repeat:-1,yoyo:true})
+			}
+function loop(){
+ctx.clearRect(0,0,9999,9999)
+ctx.drawImage(img,img.xP,img.yP);
+}
+		</script>
+
+	</head>
+
+	<body onload="init()">
+		
+		<canvas id="canvas" width="800" height="600">
+			Canvas is not supported.
+		</canvas>
+		
+	</body>
+
+</html>

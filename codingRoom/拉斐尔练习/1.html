@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript">
+// Creates canvas 320 × 200 at 50, 50
+var paper = Raphael(50, 50, 500, 500);
+
+for (var i = 0; i <5; i++) {
+    paper.circle(10 + 15 * i, 10, 10)
+         .attr({fill: "#000"})
+         .data("i", i)
+         .click(function () {
+            console.log(this.attr('cx'),this.data('i'));
+         });
+}
+</script>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+
+	<canvas id = "mycanvas" width = "400" height = "300" style = "border 1px solid black"></canvas>
+	<script type="text/javascript">
+	    /**
+     * 计算点到点之间的距离
+     * @param {Array[Number,Number]} a 坐标1
+     * @param {Array[Number,Number]} b 坐标2
+     */ 
+    function pointToPoint(a, b){
+          return sqrt(pow(a[0] - b[0], 2) + pow(a[1] - b[1], 2));
+    }
+		    /**
+     * 利用角度计算三角函数
+     * @param {String} 三角函数名
+     * @param {Number} 角度
+     */ 
+	function math(way, du) {
+	    var math = Math, cos = math.cos, sin = math.sin, PI = math.PI, PI2 = PI * 2, min = math.min, max = math.max,
+	    atan = math.atan, sqrt = math.sqrt, pow = math.pow;
+		var handle = {
+			sin : function (du) {
+				var p = this.toP(du);
+				return this.fix(sin(p),4);
+			},
+			cos : function (du) {
+				var p = this.toP(du);
+				return this.fix(cos(p),4);
+			},
+			tan : function (du) {
+				var p = this.toP(du);
+				return this.fix(tan(p),4);
+			},
+			toP:function(du){
+			return du / 180 * PI;
+			},
+			fix:function(input,n){
+			return input.toFixed(n)
+			}
+		}
+		return handle[way](du)
+	}
+var  c = document.getElementById('mycanvas');
+	var ctx = c.getContext('2d');
+	ctx.fillStyle = 'black';
+var  n = 6;
+var x= 150;
+var y = 150;
+var r = 80;
+var ang = math('toP',360/n)
+ctx.save(); //保存状态 一般是save/代码/restore
+ctx.fillStyle = 'rgba(255,0,0,.3)'; //填充红色，半透明
+ctx.strokeStyle = 'hsl(120,50%,50%)'; //填充绿色
+ctx.lineWidth = 1; //设置线宽
+ctx.translate(x, y); //原点移到x,y处，即要画的多边形中心
+ctx.moveTo(0, -r); //到达中心r距离处
+ctx.beginPath();
+for (i = 0; i < n; i++) {
+	ctx.rotate(ang) //旋转
+	ctx.lineTo(0, -r); //在新的点，同样距离中心r处连线
+}
+ctx.closePath(); //闭合路径
+ctx.stroke(); //画线
+ctx.fill(); //填充
+ctx.restore(); //返回原始状态
+	</script>
+</body>
+</html>

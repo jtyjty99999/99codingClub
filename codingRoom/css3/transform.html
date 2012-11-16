@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<style type="text/css">
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background:rgba(168, 237, 255, 0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+/* reset */
+	body{margin:0; font:12px/1.5 tahoma,'Microsoft Yahei',sans-serif; color:#333;
+	}
+    h1,h2,h3,h5,p,ul,ol,dl,dd{margin:0;}
+    button{padding:0;}
+    ul,ol{padding-left:0;list-style-type:none;}
+    a{text-decoration:none;color:#333;}
+    a img{border:0;}
+	html,body{
+	height:100%;
+	}
+	.wrap{
+	margin:0 auto;
+	width:100%;
+	min-height: 100%;
+	background:url(body3.png);
+	background-repeat:repeat
+	}
+	#daoke{
+	font-size:50px;
+	}
+	.box{
+	box-shadow: 0px 0px 20px #004879;
+	position:absolute;
+	width:140px;
+	height:140px;
+	background:#8BC9FF;
+	-webkit-transform:rotate(45deg);
+	-moz-transform:rotate(45deg);
+	opacity:0;
+	overflow:hidden
+	}
+.box2{
+top:-30px;
+position:absolute;
+opacity:0;
+background:black;
+-webkit-transform:rotate(45deg);
+-moz-transform:rotate(45deg);
+height:400px;
+}
+.box a img{
+-webkit-transform: rotate(270deg);
+-moz-transform: rotate(270deg);
+}
+#list11{
+width:290px;
+height:290px;
+}
+.tabs{
+display:none;
+background:#8BC9FF;
+position: relative;  
+/* double shadow core */
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2); 
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+}
+.tips{
+color:#3cfff7;
+display:block;
+position:absolute;
+top:115px;
+left:-20px;
+-webkit-transform: rotate(270deg);
+-moz-transform: rotate(270deg);
+font-size:20px;
+border-radius:3px;
+box-shadow:0px 1px 10px #2aafa4
+}
+.text{
+overflow-y:auto;
+height:420px;
+padding:20px;
+  background-repeat: repeat-y;
+background-position: -673px 0;
+background-image: url(bgwood.png);
+}
+.textUp{
+height:20px;
+background-repeat: repeat-y;
+background-position: 0 0;
+background-image: url(bgwood.png);
+}
+.textDown{
+height:25px;
+background-repeat: repeat-y;
+background-position: -1374px 0;
+background-image: url(bgwood.png);
+}
+/* double shadow core */
+.tabs:before, .tabs:after {
+	content: '';
+	position: absolute;
+	
+	width: 60%;
+	height: 5px;
+	
+	-webkit-box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+	-ms-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+	
+	-webkit-transform: rotate(-4deg) skew(-10deg);
+	-moz-transform: rotate(-4deg) skew(-10deg);
+	-o-transform: rotate(-4deg) skew(-10deg);
+	-ms-transform: rotate(-4deg) skew(-10deg);
+	transform: rotate(-4deg) skew(-10deg);
+	
+	left: 10px;
+	bottom: 13px;
+	z-index: -1;
+}
+/* double shadow core */
+.tabs:after {
+	left: auto;
+	right: 10px;
+	-webkit-transform: rotate(4deg) skew(10deg);
+	-moz-transform: rotate(4deg) skew(10deg);
+	-o-transform: rotate(4deg) skew(10deg);
+	-ms-transform: rotate(4deg) skew(10deg);
+	transform: rotate(4deg) skew(10deg);
+}
+
+	.buttonBig{
+	box-shadow: 2px 2px 12px #004879;
+	width:140px;
+	height:140px;
+	background:#8BC9FF;
+	position:relative;
+	margin:15px
+	}
+	.list{
+	position:absolute;
+	height:100px;width:100px;left:150px;
+	box-shadow: 2px 2px 10px #004879;
+	opacity:0;
+	background:#8BC9FF;
+	}
+
+	</style>
+	<script type="text/javascript">
+	$(function () {
+		$(document).delegate('.box', 'mouseenter', function () {
+			$(this).children('.box2').css({
+				opacity : '0.7'
+			})
+		})
+		$(document).delegate('.box2', 'hover', function () {
+			$(this).css({
+				opacity : '0.7'
+			})
+		})
+		$(document).delegate('.tips', 'hover', function () {
+			$(this).parent('div').css({
+				opacity : '0.7'
+			})
+		})
+		$(document).delegate('.box', 'mouseleave', function () {
+			$(this).children('.box2').css({
+				opacity : '0'
+			})
+		})
+		$(document).delegate('.boxSmall', 'click', function () {
+			var $el = $('#list11')
+			var pl,
+			pt;
+			var that = this;
+			$el[0].style.WebkitTransform = 'rotate(0deg)';
+			$el[0].style.MozTransform = 'rotate(0deg)';
+			$el.animate({
+				top : '150px',
+				left : '550px'
+			}).animate({
+				width : '602px',
+				height : '505px'
+			})
+			$('#list1').animate({
+				left : '150px',
+				top : '300px',
+				opacity : '1'
+			});
+			$('#list3').delay(100).animate({
+				left : '350px',
+				top : '300px',
+				opacity : '1'
+			});
+			$('#list4').delay(150).animate({
+				left : '250px',
+				top : '400px',
+				opacity : '1'
+			});
+			$('#list5').delay(200).animate({
+				left : '150px',
+				top : '500px',
+				opacity : '1'
+			});
+			$('#list6').delay(250).animate({
+				left : '350px',
+				top : '500px',
+				opacity : '1'
+			});
+			$('#list8').delay(350).animate({
+				left : '350px',
+				top : '300px',
+				opacity : '1'
+			}, function () {
+				pl = $(that).css('left');
+				pt = $(that).css('top');
+				$('#list3').delay(400).css({
+					left : pl,
+					top : pt,
+					opacity : '1'
+				});
+			});
+			$(this).delay(400).animate({
+				left : '250px',
+				top : '200px',
+				opacity : '1'
+			})
+			$('#container').children('div').eq($(this).index()).delay(400).fadeIn('slow').siblings().hide()
+		})
+		function initAnimate() {
+			$('#list1').animate({
+				left : '710px',
+				top : '400px',
+				opacity : '1'
+			});
+			$('#list3').delay(200).animate({
+				left : '920px',
+				top : '400px',
+				opacity : '1'
+			});
+			$('#list4').delay(300).animate({
+				left : '605px',
+				top : '505px',
+				opacity : '1'
+			});
+			$('#list5').delay(400).animate({
+				left : '815px',
+				top : '505px',
+				opacity : '1'
+			});
+			$('#list6').delay(500).animate({
+				left : '815px',
+				top : '295px',
+				opacity : '1'
+			});
+			$('#list8').delay(600).animate({
+				left : '1025px',
+				top : '295px',
+				opacity : '1'
+			});
+			$('#list11').delay(600).animate({
+				left : '425px',
+				top : '220px',
+				opacity : '1'
+			});
+		}
+		initAnimate();
+		var showFlag = [true,true,true,true,true];
+		$(document).delegate('.buttonBig', 'click', function () {
+			var _this = $(this);
+			var _child = _this.children('.list');
+			var _neibor = _this.siblings()
+			if (showFlag[_this.index()]) {
+				_this.animate({
+					width : '500px',
+				});
+				_child.delay(100).animate({
+				height:'420px',
+				width:'355px',
+				opacity:'1'
+				},1000)
+				_neibor.animate({
+					width : '140px',
+				})
+				_neibor.children('.list').animate({
+				height:'100px',
+				width:'100px',
+				opacity:'0'
+				})
+				showFlag = [true,true,true,true,true];
+				showFlag[_this.index()] = false;
+				console.log(showFlag)
+			} else {
+				_this.animate({
+					width : '140px',
+				})
+				_child.animate({
+				height:'100px',
+				width:'100px',
+				opacity:'0'
+				})
+				showFlag[_this.index()] = true;
+				console.log(showFlag)
+			}
+		})
+	})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+	<div id="nav"><h1 id="daoke"><a href="">daoke.me</a></h1></div>
+	<div class="box boxSmall" id="list1">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>随车号簿</span>
+	</div>
+	</div>
+	<div class="box boxSmall" id="list3">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>我的资料</span>
+	</div>
+	</div>
+	<div class="box boxSmall" id="list4">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>我的设置</span>
+	</div>
+	</div>
+	<div class="box boxSmall" id="list5">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>随身号簿</span>
+	</div>
+	</div>
+	<div class="box boxSmall" id="list6">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>随身号簿</span>
+	</div>
+	</div>
+	<div class="box boxSmall" id="list8">
+	<a href="javascript:void(0)">
+	<img src="box.png" alt="" width='148'/>4
+	</a>
+	<div class="box box2">
+	<span class='tips'>随身号簿</span>
+	</div>
+	</div>
+	<div class="box" id="list11">
+	<div id="container">
+	<div class="tabs"><div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div></div>
+	<div class="tabs">
+		<div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div>
+	</div>
+	<div class="tabs"><div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div></div>
+	<div class="tabs"><div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div></div>
+	<div class="tabs"><div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div></div>
+	<div class="tabs"><div class="textUp"></div>
+		<div class="text">
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+	<div class="buttonBig"><div class="list"></div></div>
+		</div>
+	<div class="textDown"></div></div>
+	</div>
+	</div>
+	</div>
+</body>
+</html>

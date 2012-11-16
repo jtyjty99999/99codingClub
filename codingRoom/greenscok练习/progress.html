@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	
+	<head>
+		
+		<title>HTML5 Example</title>
+
+		<script src="js/TweenMax.min.js"></script>
+
+
+
+		<style type="text/css">
+
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: #f9276c;
+				position: absolute;
+			}
+
+		</style>
+
+	</head>
+
+	<body>
+		
+		<div id="box"></div>
+		
+	</body>
+
+			<script>
+
+				var b = document.getElementById("box");
+				var xc = window.innerWidth * 0.5 - 100;
+				var yc = window.innerHeight * 0.5 - 100;
+				b.style.left = -500+ "px";
+				b.style.top = yc + "px";
+				
+				//			TweenMax.to(b,1.5,{css:{left:xc},ease:Expo.easeOut})
+				//			TweenMax.to(b,1,{css:{scale:3,backgroundColor:"grey"},ease:Expo.easeOut,delay:1.2})
+				//			TweenMax.to(b,1,{css:{rotation:180,backgroundColor:"blue"},ease:Expo.easeOut,delay:2})
+				var tl = new TimelineMax({paused: true});//暂停
+				tl.to(b, 1, {
+					css : {
+						left : xc,
+						scale:3,
+						backgroundColor:"blue",
+						rotation:180
+					},
+					ease : Elastic.easeOut
+				},0);//时间百分比起点
+				document.onmousemove = function (e) {
+					var e = e || window.event
+					var prog = e.pageX / window.innerWidth;
+					tl.progress(prog);
+				};
+		</script>
+</html>

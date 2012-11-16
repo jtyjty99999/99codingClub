@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript">
+// Creates canvas 320 × 200 at 50, 50
+var paper = Raphael(50, 50, 500, 500);
+
+paper.circle(320, 240, 60).animate({
+	fill : "#223fa3",
+	stroke : "#000",
+	"stroke-width" : 80,
+	"stroke-opacity" : 0.5,
+	'cx':200,
+	'r':100
+}, 2000);
+</script>
+	</body>
+</html>

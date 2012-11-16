@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	<script src="js/TweenMax.min.js"></script>
+	<style type="text/css">
+html, body, div, span, object, iframe, x h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, div, summary, time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+	.letter{
+position: absolute;
+	}
+	.pixel {
+	position: absolute;
+width: 15px;
+height: 15px;
+background: #555;
+}
+	</style>
+</head>
+<body>
+	<div id="drag-me-boxes" style="height: 180px; position: relative;margin:180px">
+	<div class="letter d">	
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 4 -->
+		<div class="pixel right" style="left: 45px; top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 45px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 45px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+	</div>
+
+	<div class="letter r" style="left: 75px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel mid" style="left: 15px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+	
+	<div class="letter a" style="left: 135px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+	</div>
+	
+	<div class="letter g" style="left: 195px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+	</div>
+	
+	<div class="letter t" style="left: 285px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel mid" style="left: 15px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel mid" style="left: 15px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+	
+	<div class="letter h" style="left: 345px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+
+	<div class="letter i" style="left: 405px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+
+	<div class="letter s" style="left: 435px;">
+		<!-- Column 1 -->
+		<div class="pixel left" style="opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel left" style="top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel left" style="top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+
+		<!-- Column 2 -->
+		<div class="pixel mid" style="left: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel mid" style="left: 15px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+
+		<!-- Column 3 -->
+		<div class="pixel right" style="left: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 30px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+		<div class="pixel right" style="left: 30px; top: 60px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+
+	<div class="letter colon" style="left: 495px;">
+		<!-- Column 1 -->
+		<div class="pixel" style="top: 15px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(85, 85, 85); "></div>
+		<div class="pixel" style="top: 45px; opacity: 1; -webkit-transform: translate(0px, 0px); background-color: rgb(17, 17, 17); "></div>
+	</div>
+</div>
+<script type="text/javascript">
+var $letters= $('.pixel'),
+	tl	= new TimelineMax({paused: true});
+ 
+tl.staggerFrom($letters, 5, {
+	css: {alpha: 0, top: "-300", scale: 5, rotation: -180,left:'-200'}, 
+	ease: Elastic.easeOut
+}, 0.3);
+$(window).on('mousemove', function(e) {
+	var prog = e.pageX / window.innerWidth;
+	tl.progress(prog*2);
+});
+</script>
+</body>
+</html>

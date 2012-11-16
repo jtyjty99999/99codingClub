@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style type="text/css">
+/**
+ * Dawn CSS Reset
+ * Version: 1.0 beta
+ * Update: 2009-07-27
+ * Author: mingelz
+ * URI: http://mingelz.com | http://www.cnblogs.com/mingelz
+ * License: http://creativecommons.org/licenses/by-sa/3.0/
+ */
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0;padding:0;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+li{list-style:none;}
+fieldset,img{border:0;}
+table{border-collapse:collapse;border-spacing:0;}
+q:before,q:after{content:'';}
+abbr[title]{border-bottom:1px dotted;cursor:help;}
+address,cite,dfn,em,var{font-style:normal;}
+button,input,select,textarea{font-size:100%;}
+legend{color:#000;}
+code,kbd,samp{font-family:"Courier New",monospace;}
+hr{border:none;height:1px;}
+body,button,input,select,textarea{font:12px/1 Arial,Tahoma,Helvetica,SimSun,san-serif;}
+
+.wrap{
+width:900px;
+padding-top:200px;
+margin:0 auto;
+background-color: black;
+}
+.quan {
+	background-color: black;
+	border:5px solid #00CED1;
+	border-right:5px solid rgba(0,0,0,0);
+	border-left:5px solid rgba(0,0,0,0);
+	margin: 0 auto;
+	width:80px;
+	height:80px;
+	border-radius:80px;
+	box-shadow: 0 0 50px #00FFFF;
+	position:relative;
+	-webkit-animation:out	1s infinite linear;
+}
+.quan1 {
+	background-color: rgba(0,0,0,0);
+	border:5px solid #00CED1;
+	border-left:5px solid black;
+	border-right:5px solid black;
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	border-radius:80px;
+	box-shadow: 0 0 20px #00FFFF;
+	position:relative;
+	top:-75px;
+	-webkit-animation:in 1s infinite linear;
+}
+
+@-webkit-keyframes in {
+	0% { -webkit-transform:rotate(0deg); box-shadow: 0 0 50px #00FFFF;}
+	100% { -webkit-transform:rotate(360deg); box-shadow: 0 0 20px #00FFFF;}
+}
+@-webkit-keyframes out {
+	0% { -webkit-transform:rotate(0deg);box-shadow: 0 0 5px #00FFFF; }
+	100% { -webkit-transform:rotate(-360deg);box-shadow: 0 0 50px #00FFFF; }
+}
+</style>
+<body>
+	<div class="wrap">
+		<div class="quan"></div>
+		<div class="quan1"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>HTML5 Example</title>
+		<script src="js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+
+		<style type="text/css">
+			#box {
+				width: 200px;
+				height: 200px;
+				background-color: #f9276c;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+		var $box = $('#box');
+		function moveBox(e) {
+			TweenLite.to($box, 0.7, { css: { left: e.pageX, top: e.pageY }});
+		}
+		$(window).on('mousemove', moveBox);
+	
+		</script>
+	</body>
+</html>

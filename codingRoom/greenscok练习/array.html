@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>HTML5 Example</title>
+		<script src="js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+	</head>
+	<style type="text/css">
+	.text { 
+			text-rendering: optimizeLegibility;
+			letter-spacing: -12px; 
+			font: bold 20em/1 sans-serif; 
+			margin: 0;
+		}
+		.text span {
+			position: relative;
+			display: inline-block;
+		}
+	</style>
+	<body>
+		<section id="canvas">
+		<p class="text">
+		<span>W</span>
+    <span>o</span>
+    <span>o</span>
+    <span>o</span>
+    <span>o</span>
+    <span>t</span>
+    <span>!</span>
+    <span>!</span>
+		</p>
+    
+</section>
+		<script>
+		var $letters = $('.text span'),
+		tl = new TimelineMax({
+				paused : true
+			});
+		tl.staggerFrom($letters, 1.5, {
+			css : {
+				alpha : 0,
+				top : "-300",
+				scale : 0,
+				rotation : -20
+			},
+			ease : Elastic.easeOut
+		}, 0.2);
+		$(window).on('mousemove', function (e) {
+			var prog = e.pageX / window.innerWidth;
+			tl.progress(prog);
+		});
+		</script>
+	</body>
+</html>

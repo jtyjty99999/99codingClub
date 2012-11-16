@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+</head>
+<body>
+<p><button id="button" style="width:100%">提取变量</button></p>
+<p><textarea id="source" style="float:left;width:48%;height:30em">/*
+// 多行注释
+// var test_0 = true;
+var test_1 = 1;
+*//**/
+
+window.alert = function () {} // 单行注释/**/
+
+var string = '\
+var stringXXXXX=0;\
+fddffd';
+
+var c = {};
+c['test_2'] = 7.8;
+
+var x0 = .5;
+var $4y = h.test_3 / x3 * yyy;
+var $ = jQuery;
+
+var t = bing ? bbbbb : tttttttttt;
+var obj = {
+    test_5: "//\n/*\n*/",test_6: 1,
+    test_0: reg
+};
+
+cc.test_7.test_8;
+var _h23test_9 = 0;
+    </textarea><textarea id="log" style="float:right;width:48%;height:30em"></textarea></p>
+​
+	<script type="text/javascript">
+	var getVariable = (function () {
+
+    var whitespace = ' \u00a0\n\r\t\f\u000b\u200b\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006'
+        + '\u2007\u2008\u2009\u200a\u202f\u205f\u3000\uFEFF';
+
+    var keyWords =
+        // 关键字
+        'break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if'
+        + ',in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with'
+        
+        // 保留字
+        + ',abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto'
+        + ',implements,import,int,interface,long,native,package,private,protected,public,short'
+        + ',static,super,synchronized,throws,transient,volatile'
+        
+        // ECMA 5 - use strict
+        + ',arguments,let,yield';
+    
+    var filter = new RegExp([
+
+        // 注释
+        "/\\*(.|\n)*?\\*/|//[^\n]*\n",
+
+        // 字符串
+        "'[^']*'|\"[^\"]*\"",
+
+        // 方法
+        "\\.[\\$_a-zA-Z]+",
+
+        // 正则表达式（无法区分除法）
+        //"/((\\.|[^/\\\n])+)/([gim]+)?",
+
+        // 对象名
+        "[\\{,][" + whitespace + "]*[$_a-zA-Z]+[$\\w]*[" + whitespace + "]*\\:",
+
+        // 关键字
+        "\\b" + keyWords.replace(/,/g, '\\b|\\b') + "\\b"
+
+
+    ].join('|'), 'g');
+
+
+    return function (code) {
+        code = code
+        .replace(filter, ';')
+        .replace(/[^\w\$]+/g, ';')
+        .replace(/^;|;\d+|;$/g, '');
+        return code = code ? code.split(';') : []; 
+    };
+
+})();
+
+/* 调用 ***********************************************/
+    
+var source = document.getElementById('source');
+var button = document.getElementById('button');
+var log = document.getElementById('log');
+
+button.onclick = function () {
+    var uniq = {};
+    var list = [];
+    var variables = getVariable(source.value);
+
+    for (var i = 0, len = variables.length; i < len; i ++) {
+        if (!uniq.hasOwnProperty(variables[i])) {
+            list.push(variables[i]);
+            uniq[variables[i]] = true;
+        }
+    }
+
+    log.value = list.join('\n');
+};​
+	</script>
+</body>
+</html>
