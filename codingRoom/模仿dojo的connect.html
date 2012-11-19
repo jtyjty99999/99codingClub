@@ -7,24 +7,36 @@
 <body>
 	<script type="text/javascript">
 function connect(scope, fnFrom, fnTo) {
+	"use strict"
+	var objFn = fnFrom.split('.');
+	var deepth = objFn.length;
 	var scope = scope || window;
-	var fn = scope[fnFrom];
-		var t = function () {
+	var j = deepth,i=j;
+	var _obj = scope,__obj=_obj ;
+	while (i > 0) {
+		_obj = _obj[objFn[deepth - i]];
+		i -= 1;
+	};
+	var t = function () {
 		return function () {
-			var ret = fn.apply(this, arguments);
+			var ret = _obj.apply(this, arguments);
 			fnTo.apply(this, arguments);
 			return ret;
 		}
 	}
-	scope[fnFrom] = t();
+	while (j > 1) {
+		__obj = __obj[objFn[deepth - j]];
+		j -= 1;
+	}
+	__obj[objFn[deepth - 1]] = t();
 }
 function a1(ha){
 alert(ha)
 }
 function a2(haa){
-alert(haa+'fuck you')
+document.write(haa+'<br />')
 }
-connect(window,'a1',a2,['hello'])
+connect(window,'console.log',a2)
 //connect(window)
 	</script>
 </body>
