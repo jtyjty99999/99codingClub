@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript">
+ var Class = {
+ 	create : function () {
+ 		return function () {
+ 			this.initialize.apply(this, arguments);
+ 		}
+ 	}
+ }
+ 
+ var Extend = function (destination, source) {
+ 	for (var property in source) {
+ 		destination[property] = source[property];
+ 	}
+ 	return destination;
+ }
+ 
+ var line = Class.create();
+ 
+ line.prototype = {
+ 	initialize : function (options, data) {
+ 		this.data = data; //日期对象列表
+ 		this.SetOptions(options);
+ 		this.lineAttr = this.options.lineAttr;
+ 		this.pointAttr = this.options.pointAttr;
+ 		this.posX = this.options.x;
+ 		this.posY = this.options.y;
+ 		this.containerWidth = this.options.width;
+ 		this.containerheight = this.options.height;
+ 		this.draw(data, this.posX, this.posY, this.containerWidth, this.containerheight);
+ 	},
+ 	SetOptions : function (options) {
+ 		this.options = {
+ 			lineAttr : {
+ 				"stroke-width" : 4,
+ 				'stroke' : '#4682B4',
+ 			},
+ 			pointAttr : {
+ 				"stroke-width" : 4,
+ 				'stroke' : '#E0FFFF',
+ 				'fill' : 'black',
+ 				r : 8
+ 			},
+ 			x : 50,
+ 			y : 50,
+ 			width : 800,
+ 			height : 420
+ 		};
+ 		Extend(this.options, options || {});
+ 	},
+ 	draw : function (data, x, y, w, h) {
+ 		var r = Raphael(x, y, w, h),
+ 		lineAttr = this.lineAttr,
+ 		pointAttr = this.pointAttr,
+ 		points = [],
+ 		max = Math.max.apply(null, data) * 1.2; //取得最大值作为基准
+ 		r.rect(0, 0, w - 1, h - 1, 10).attr({
+ 			stroke : "#666",
+ 			fill : "#C6E2FF"
+ 		});
+ 		var path = [["M", 20, h - data[0] / max * h]]; //存储路径
+ 		var l = data.length;
+ 		var innerWidth = (w - 20) / l; //取得每块的宽度
+ 		for (var i = 0; i < l; i++) {
+ 			var _x = 20 + i * innerWidth,
+ 			_y = h - (data[i] / max) * h; //拿到点坐标
+ 			path.push(['L', _x, _y]); //利用l方法连线
+ 			points.push([_x, _y])
+ 		}
+ 		r.path(path).attr(lineAttr); //绘制折线图
+ 		for (var j = 0; j < l; j++) {
+			var p = r.circle(points[j][0], points[j][1], 5)
+ 			p.attr(pointAttr);
+ 		}
+ 	}
+ }
+ var a = new line({}, [20, 37, 84, 25, 96, 57, 68, 29, 110, 200, 50, 88, 93])
+</script>
+	</body>
+</html>
