@@ -34,10 +34,14 @@
  		this.posY = this.options.y;
  		this.containerWidth = this.options.width;
  		this.containerheight = this.options.height;
- 		this.draw(data, this.posX, this.posY, this.containerWidth, this.containerheight);
+		this.chartStyle = this.options.chartStyle;
+		this.pointStyle = this.options.pointStyle;
+ 		this.draw(data, this.posX, this.posY, this.containerWidth, this.containerheight,this.chartStyle);
  	},
  	SetOptions : function (options) {
  		this.options = {
+			chartStyle:'round',
+			pointStyle:'round',
  			lineAttr : {
  				"stroke-width" : 4,
  				'stroke' : '#4682B4',
@@ -72,8 +76,15 @@
  		for (var i = 1; i < l; i++) {
  			var _x = 20 + i * innerWidth,
  			_y = h - (data[i] / max) * h; //拿到点坐标
+			switch (this.chartStyle){
+			case 'round':
  			path.push(['C', 20 + 40 + (i - 1) * innerWidth, h-(data[i - 1] / max) * h, _x - 40, _y, _x, _y]); //以x1,y1,x2,y2,终点画贝塞尔曲线
- 			points.push([_x, _y]) //存储点坐标，不存起点
+ 			break
+			case 'line':
+			path.push(['L', _x, _y]); //利用l方法连线
+			break
+			}
+			points.push([_x, _y]) //存储点坐标，不存起点
  		}
  		r.path(path).attr(lineAttr);
  		for (var j = 0; j < l - 1; j++) { //单独处理起点
@@ -93,7 +104,7 @@
  		r.circle(20, h - data[0] / max * h, 5).attr(pointAttr); //单独处理起点
  	}
  }
- var a = new roundline({}, [20, 37, 84, 25, 96, 57, 68, 29, 110, 200, 50, 88, 93])
+ var a = new roundline({chartStyle:'round'}, [80, 37, 84, 25, 96, 57, 68, 29, 110, 200, 50, 88, 93])
 </script>
 	</body>
 </html>

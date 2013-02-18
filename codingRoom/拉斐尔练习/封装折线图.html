@@ -68,17 +68,18 @@
  		var path = [["M", 20, h - data[0] / max * h]]; //存储路径
  		var l = data.length;
  		var innerWidth = (w - 20) / l; //取得每块的宽度
- 		for (var i = 0; i < l; i++) {
+ 		for (var i = 1; i < l; i++) {
  			var _x = 20 + i * innerWidth,
  			_y = h - (data[i] / max) * h; //拿到点坐标
  			path.push(['L', _x, _y]); //利用l方法连线
  			points.push([_x, _y])
  		}
  		r.path(path).attr(lineAttr); //绘制折线图
- 		for (var j = 0; j < l; j++) {
+ 		for (var j = 0; j < l-1; j++) {
 			var p = r.circle(points[j][0], points[j][1], 5)
  			p.attr(pointAttr);
  		}
+		r.circle(20, h - data[0] / max * h, 5).attr(pointAttr); //单独处理起点
  	}
  }
  var a = new line({}, [20, 37, 84, 25, 96, 57, 68, 29, 110, 200, 50, 88, 93])

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.0.0/raphael-min.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  <script type="text/javascript">
+Raphael(10, 10, 1000, 1000, function () {
+
+  var data = {
+  	'startX' : 200,
+  	'startY' : 200,
+  	'r' : 100,
+  	'points' : [{
+  			'x' : 100,
+  			'y' : 100,
+  			'r' : 30,
+  			'href' : 'http://www.baidu.com'
+  		}, {
+  			'x' : 50,
+  			'y' : 50,
+  			'r' : 10,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}, {
+  			'x' : 300,
+  			'y' : 300,
+  			'r' : 20,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}, {
+  			'x' : 400,
+  			'y' : 400,
+  			'r' : 40,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}, {
+  			'x' : 350,
+  			'y' : 70,
+  			'r' : 18,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}, {
+  			'x' : 20,
+  			'y' : 290,
+  			'r' : 26,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}, {
+  			'x' : 700,
+  			'y' : 120,
+  			'r' : 14,
+  			'href' : 'http://www.baidu.com',
+  			'text' : 'baidu'
+  		}
+  	]
+  }
+
+
+
+var r = this;
+  var set = r.set();
+  var l =data.points.length;
+  var path = [["M", data.startX, data.startY]]
+  for(var i = 0;i<l;i++){
+  path.push(["M", data.startX, data.startY],["L",data.points[i].x,data.points[i].y])
+  }
+  r.path(path)
+  set.push(r.circle(data.startX,data.startY,data.r)).attr({'fill':'#125fb7'})
+   for(var i = 0;i<l;i++){
+  set.push(r.circle(data.points[i].x,data.points[i].y,data.points[i].r).attr({'fill':'#125fb7'}).data('href',data.points[i].href))
+  r.text(data.points[i].x,data.points[i].y,data.points[i].text)
+  }
+  set.mouseover(function(){
+  this.attr({'fill':'#2f8bd0'})
+  })
+   set.mouseout(function(){
+  this.attr({'fill':'#125fb7'})
+  })
+    set.click(function(){
+	location.href = this.data('href');
+  })
+});
+  </script>
+</body>
+</html>

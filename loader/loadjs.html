@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="loader.js"></script>
+</head>
+<body>
+<div id="hello" style="width:200px;height:200px;background:black">
+
+</div>
+<script type="text/javascript">
+/*	require(['run','cs','js/ds'],function(run){
+	console.log(modules)
+	})*/
+	
+	require(['ui', 'event'], function (ui, event) {
+	var el = document.getElementById('hello')
+		console.log(ui.wholeHeight, event.addHandler(el, 'click', function () {
+				alert('go!')
+			}))
+	})
+</script>
+</body>
+</html>
