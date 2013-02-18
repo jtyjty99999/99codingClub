@@ -15,25 +15,40 @@ arr.pop();
 return arr.join('/');
 }
 	function reg(id, factory) {
-		console.log(id, factory);
 		if (!modules[id]) {
 			modules[id] = factory.apply(null, []);
-			if (callbacks[id]) {
-				var args = [];
-				var l = callbacks[id]['args'].length;
-				for(var i  = 0 ;i<l;i++){//把参数装配成modules存储的模块
-				args.push(modules[callbacks[id]['args'][i]])
+			modules[id]['status'] = 'parsing';
+			console.log(modules)
+			console.log(type(callbacks['fn']),checkReady(callbacks['deps']))
+			if (type(callbacks['fn'])=='Function'&&checkReady(callbacks['deps'])) {
+				var args = [],i;
+				var l = callbacks['deps'].length;
+				for(i  = 0 ;i<l;i++){//把参数装配成modules存储的模块
+				args.push(modules[callbacks['deps'][i]])
 				}
-				callbacks[id].apply(null, args)
+				callbacks['fn'].apply(null, args)
+				callbacks['fn']=null;
+				callbacks['deps']=null;
 			};
 		}
 	};
+	function checkReady(args) {
+		var l = args.length,
+		i;
+		for (i = 0; i < l; i++) {
+			if (modules[args[i]]['status'] !== 'ready') {
+				return false
+			}
+			return true
+		}
+	}
 		function loadjs(url) {
 			//通过script节点加载目标模块
 			var node = doc.createElement("script");
 			node[ W3C? "onload" : "onreadystatechange"] = function () {
 				if (W3C || /loaded|complete/i.test(node.readyState)) {
 						console.log("已成功加载 " + node.src);
+						modules[url]['status']='ready'
 				}
 			}
 			node.onerror = function () {
@@ -106,19 +121,19 @@ window.require = function (deps, callback) {
 		if (modules[absoluteUrl]) { //存在此模块
 			callback.apply(null, [modules[absoluteUrl]]);
 		} else { //当不存在此模块
-			callbacks[absoluteUrl]=callback;//把回调函数的属主设置为模块
-			callbacks[absoluteUrl]['args']=[];
-			callbacks[absoluteUrl]['args'].push(absoluteUrl);
+			callbacks['fn']=callback;//把回调函数的属主设置为模块
+			callbacks['deps']=[];
+			callbacks['deps'].push(absoluteUrl);
 			loadjs(absoluteUrl);
 		}
 	} else {
 		var l = deps.length,
-		i,finallyModuleName = adjustPath(base,deps[l-1])+'.js';
-		callbacks[finallyModuleName]=callback;//利用最后加载的模块作为callback的属主
-	callbacks[finallyModuleName]['args']=[];//存参数
+		i;
+		callbacks['fn']=callback;//利用最后加载的模块作为callback的属主
+	callbacks['deps']=[];//存参数
 		for (i = 0; i < l; i++) {
 		var absoluteUrl = adjustPath(base,deps[i])+'.js';
-		callbacks[finallyModuleName]['args'].push(absoluteUrl)
+		callbacks['deps'].push(absoluteUrl)
 			if (!modules[absoluteUrl]) { //依赖没有加载
 				loadjs(absoluteUrl);
 			}
