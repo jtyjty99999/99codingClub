@@ -16,7 +16,7 @@
 	
 	require(['ui', 'event'], function (ui, event) {
 	var el = document.getElementById('hello')
-		console.log(ui.wholeHeight, event.addHandler(el, 'click', function () {
+		console.log(ui.wholeHeight(), event.addHandler(el, 'click', function () {
 				alert('go!')
 			}))
 	})
