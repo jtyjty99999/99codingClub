@@ -15,10 +15,13 @@
 	})*/
 	
 	require(['ui', 'event'], function (ui, event) {
-	var el = document.getElementById('hello')
+		var el = document.getElementById('hello');
 		console.log(ui.wholeHeight(), event.addHandler(el, 'click', function () {
-				alert('go!')
+				alert('go!');
 			}))
+		require('ui', function (ui) {
+			console.log(ui.wholeHeight());
+		})
 	})
 </script>
 </body>

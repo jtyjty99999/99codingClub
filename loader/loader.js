@@ -16,15 +16,15 @@ return arr.join('/');
 }
 	function reg(id, factory) {
 		if (!modules[id]) {
-			modules[id] = factory.apply(null, []);
+			modules[id]={};
+			modules[id]['factory'] = factory.apply(null, []);
 			modules[id]['status'] = 'parsing';
 			console.log(modules)
-			console.log(type(callbacks['fn']),checkReady(callbacks['deps']))
 			if (type(callbacks['fn'])=='Function'&&checkReady(callbacks['deps'])) {
 				var args = [],i;
 				var l = callbacks['deps'].length;
 				for(i  = 0 ;i<l;i++){//把参数装配成modules存储的模块
-				args.push(modules[callbacks['deps'][i]])
+				args.push(modules[callbacks['deps'][i]]['factory'])
 				}
 				callbacks['fn'].apply(null, args)
 				callbacks['fn']=null;
@@ -119,7 +119,7 @@ window.require = function (deps, callback) {
 	if (type(deps) == 'String') {
 	var absoluteUrl = adjustPath(base,deps)+'.js'
 		if (modules[absoluteUrl]) { //存在此模块
-			callback.apply(null, [modules[absoluteUrl]]);
+			callback.apply(null, [modules[absoluteUrl]['factory']]);
 		} else { //当不存在此模块
 			callbacks['fn']=callback;//把回调函数的属主设置为模块
 			callbacks['deps']=[];
