@@ -19,7 +19,6 @@ return arr.join('/');
 			modules[id]={};
 			modules[id]['factory'] = factory.apply(null, []);
 			modules[id]['status'] = 'parsing';
-			console.log(modules)
 			if (type(callbacks['fn'])=='Function'&&checkReady(callbacks['deps'])) {
 				var args = [],i;
 				var l = callbacks['deps'].length;
@@ -181,5 +180,4 @@ window.require = function (deps, callback) {
     }
 
 	
-
 	

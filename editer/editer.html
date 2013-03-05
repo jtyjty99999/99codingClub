@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>ACE in Action</title>
+<style type="text/css" media="screen">
+    #editorjs { 
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+		width:600px;
+		height:200px;
+    }
+	    #editorcss { 
+        position: absolute;
+        top: 200px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+		width:600px;
+		height:200px;
+    }
+	    #editorhtml { 
+        position: absolute;
+        top: 400px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+		width:600px;
+		height:200px;
+    }
+	#run{
+	margin-top:700px
+	}
+	#show{
+	position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 600px;
+		width:300px;
+		height:600px;
+	}
+</style>
+</head>
+<body>
+
+<div id="editorjs">function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+}
+</div>
+    <div id="editorhtml">
+</div><div id="editorcss">*{margin:0px}
+</div>
+<iframe src="" frameborder="0" id="show"></iframe>
+<input type="button" value="运行" id="run"/>
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+function setInnerText(elem, text) {
+		if (typeof elem.textContent == "string") {
+			elem.textContent = text
+		}
+		else {
+			elem.innerText = text;
+		}
+	}
+
+    var editorjs = ace.edit("editorjs");
+    editorjs.setTheme("ace/theme/monokai");
+    editorjs.getSession().setMode("ace/mode/javascript");
+	    var editorcss = ace.edit("editorcss");
+    editorcss.setTheme("ace/theme/monokai");
+    editorcss.getSession().setMode("ace/mode/css");
+	    var editorhtml= ace.edit("editorhtml");
+    editorhtml.setTheme("ace/theme/monokai");
+    editorhtml.getSession().setMode("ace/mode/html");
+	editorhtml.setValue('<!DOCTYPE HTML>\n<html lang="en-US">\n<head>\n<meta charset="UTF-8">\n<title>\n</title>\n</head>\n<body>\n</body>\n</html>')
+	function changeIframe(id, htmlContent,cssContent,jsContent) {
+		var iObj = document.getElementById(id).contentWindow;
+		iObj.document.designMode = 'On';
+		iObj.document.contentEditable = true;
+		iObj.document.open();
+		iObj.document.writeln(htmlContent);
+		iObj.document.close();
+		var style = document.createElement("style");
+		style.id = 'newStyle';
+		(iObj.document.getElementsByTagName("head")[0] || iObj.document.body).appendChild(style);
+		if (style.styleSheet) { //for ie
+			style.styleSheet.cssText = cssContent;
+		} else { //for w3c
+			style.appendChild(document.createTextNode(cssContent));
+		}
+		var node = document.createElement("script");
+			setInnerText(node,jsContent);
+		iObj.document.body.appendChild(node);
+	}
+	
+	var runButton = document.getElementById('run');
+	runButton.onclick=function(){
+	changeIframe('show',editorhtml.getValue(),editorcss.getValue(),editorjs.getValue())
+	}
+</script>
+</body>
+</html>
