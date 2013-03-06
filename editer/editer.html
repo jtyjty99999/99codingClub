@@ -41,6 +41,15 @@
 		width:300px;
 		height:600px;
 	}
+	#console{
+	       position: absolute;
+        top: 600px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+		width:600px;
+		height:100px;
+	}
 </style>
 </head>
 <body>
@@ -53,10 +62,50 @@
     <div id="editorhtml">
 </div><div id="editorcss">*{margin:0px}
 </div>
+<div id="console">
+</div>
 <iframe src="" frameborder="0" id="show"></iframe>
 <input type="button" value="运行" id="run"/>
 <script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
+function connect(scope, fnFrom, fnTo) {
+    "use strict"
+    var objFn = fnFrom.split('.');//处理传入的函数名
+    var deepth = objFn.length;
+    var scope = scope || window;
+    var j = deepth,i=j;
+    var _obj = scope,__obj=_obj ;
+    while (i > 0) {//以window.console.log为例，这里利用迭代最终拿到log
+        _obj = _obj[objFn[deepth - i]];
+        i -= 1;
+    };
+    var t = function () {
+            var ret = _obj.apply(this, arguments);//此时this指向console  注意console.log  log函数上下文必须在console那里，否则会报错
+            fnTo.apply(this, arguments);
+            return ret;
+    }
+    while (j > 1) {//仍然利用迭代，找出window.console.log前一级window.console的引用
+        __obj = __obj[objFn[deepth - j]];
+        j -= 1;
+    }
+    __obj[objFn[deepth - 1]] = t;//覆盖window.console.log
+}
+function unconnect(scope,fn){
+var objFn = fn.split('.');//处理传入的函数名
+    var deepth = objFn.length;
+    var scope = scope || window;
+    var j = deepth,i=j;
+    var _obj = scope;
+	    while (i > 0) {//以window.console.log为例，这里利用迭代最终拿到log
+        _obj = _obj[objFn[deepth - i]];
+        i -= 1;
+    };
+delete _obj
+}
+function publishConsole(inner){
+document.getElementById('console').innerHTML=inner
+}
+
 function setInnerText(elem, text) {
 		if (typeof elem.textContent == "string") {
 			elem.textContent = text
@@ -78,6 +127,8 @@ function setInnerText(elem, text) {
 	editorhtml.setValue('<!DOCTYPE HTML>\n<html lang="en-US">\n<head>\n<meta charset="UTF-8">\n<title>\n</title>\n</head>\n<body>\n</body>\n</html>')
 	function changeIframe(id, htmlContent,cssContent,jsContent) {
 		var iObj = document.getElementById(id).contentWindow;
+		unconnect(iObj,'console.log')
+		connect(iObj,'console.log',publishConsole)
 		iObj.document.designMode = 'On';
 		iObj.document.contentEditable = true;
 		iObj.document.open();
