@@ -9,10 +9,36 @@ var mouseRecord = function (align, path) {
     this.align = align || 'left';
     this.path = path;
     this.clicks = 0;
-    var tools = {
-        windowHeight:function () {
+    var that = this;
+    //根据对齐情况计算基准点
+    //居中对齐情况下，基准点在页面中心，左边为负值，右边为正值，居左情况下，基准点在页面最左边。
+	var tools = {
+	        sendData:function (data, path) {
+            var url = tools.addQueryUrlParam(data, path)
+            var img = new Image();
+            img.src = url;
+            img = null;
+        },
+        addQueryUrlParam:function (url, data) {
+            for (key in data) {
+                if (url.indexOf("?") == -1) {
+                    url += "?";
+                } else {
+                    url += "&";
+                }
+                url += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]);
+            }
+            return url
+        }
+	}
+    var mouseRel= {
+        windowWidth:function () {
             var a = document.documentElement;
-            return self.innerHeight || a && a.clientHeight || document.body.clientHeight
+            return self.innerWidth || a && a.clientWidth || document.body.clientWidth
+        },
+        fixZero : function(){
+        zero = that.align==='middle'?-mouseRel.windowWidth()/2:0;
+        return zero
         },
         getMosPos:function (e) {
             var scrollx,
@@ -32,33 +58,23 @@ var mouseRecord = function (align, path) {
         getMouseEl:function (x, y) {
             return document.elementFromPoint(x, y);
         },
-        sendData:function (data, path) {
-            var url = tools.addQueryUrlParam(data, path)
-            var img = new Image();
-            img.src = url;
-            img = null;
-        },
-        makeData:function (event) {
+        makeMouseData:function (event) {
             var e = eop.getEvent(event);
-            var mousePos = tools.getMosPos(e);
-            var el = tools.getMouseEl(mousePos.x, mousePos.y);
+            var mousePos = mouseRel.getMosPos(e);
+            var el = mouseRel.getMouseEl(mousePos.x, mousePos.y);
+            var message = '你点击了X:'+mousePos.x+'你点击了Y'+mousePos.y;
             return {
-                'elementFromMouse':el,
-                'positionX':mousePos.x,
-                'positionY':mousePos.y
+                'className':el.className,
+                'nodeName':el.nodeName,
+                'parentNode':el.parentNode,
+                'nextSibling':el.nextSibling,
+                'html':el.innerHTML,
+                'positionX':mousePos.x + zero, //修正X坐标
+                'positionY':mousePos.y,
+                'message':message,
+                'percentageX':mousePos.x/mouseRel.windowWidth()
             }
         },
-        addQueryUrlParam:function (url, data) {
-            for (key in data) {
-                if (url.indexOf("?") == -1) {
-                    url += "?";
-                } else {
-                    url += "&";
-                }
-                url += encodeURIComponent(key) + "=" + encodeURIComponent(data[key]);
-            }
-            return url
-        }
     }
     var eop = {
         on : function (oElement, sEvent, fnHandler) {
@@ -80,15 +96,14 @@ var mouseRecord = function (align, path) {
         }
 
     }
-    var that = this;
+    var zero=mouseRel.fixZero();
     //返回对象
     return {
         init : function () {
             eop.on(document, 'mousedown', function (event) {
-                console.log(that.clicks)
                 that.clicks+=1;
-                var data = tools.makeData();
-                tools.sendData(that.path,data)
+                var data = mouseRel.makeMouseData(event);
+                tools.sendData(that.path,data);
             })
         },
         getClickCount:function(){
@@ -96,5 +111,5 @@ var mouseRecord = function (align, path) {
         }
     }
 };
-var c = new mouseRecord('middle', 'www.baidu.com');
+var c = new mouseRecord('middle', 'http://localhost:8888/');
 c.init();
