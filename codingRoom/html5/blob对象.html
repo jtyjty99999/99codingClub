@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+var aFileParts = ["<a id=\"a\"><b id=\"b\">hey!<\/b><\/a>"];
+var oMyBlob = new Blob(aFileParts, { "type" : "text/plain" }); // the blob
+
+console.log(oMyBlob)
+var fr = new FileReader(); 
+fr.onload = function() {
+  console.log(this.result);document.location = this.result;}
+fr.readAsDataURL(oMyBlob);
+</script>
+</body>
+</html>

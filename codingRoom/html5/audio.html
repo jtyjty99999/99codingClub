@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+<video id="video"></video>
+<button id="startbutton">Take photo</button>
+<canvas id="canvas"></canvas>
+<img src="http://placekitten.com/g/320/261" id="photo" alt="photo">
+<script type="text/javascript">
+(function() {
+ 
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
+ 
+  navigator.getMedia(
+    {
+      video: false,
+      audio: true
+    },
+    function(stream) {
+	  console.log(stream)
+        var vendorURL = window.URL || window.webkitURL;
+        a= vendorURL.createObjectURL(stream);
+		console.log(a)
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
+  );
+
+})();
+</script>
+</body>
+</html>

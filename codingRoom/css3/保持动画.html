@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<style type="text/css">
+.test{
+    font-size:12px;
+	-webkit-animation:navAnimation 1s linear 0s 1;
+	-moz-animation:navAnimation 1s linear 0s 1;}
+@-webkit-keyframes navAnimation{
+	0%{font-size:12px;}
+    50%{font-size:18px;}
+	100%{font-size:24px;}
+}
+@-moz-keyframes navAnimation{
+	0%{font-size:12px;}
+    50%{font-size:18px;}
+	100%{font-size:24px;}
+}
+.forwards{ 
+    -webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+}
+.backwards{
+    -webkit-animation-fill-mode:backwards;
+    -moz-animation-fill-mode:backwards;
+}
+</style>
+<body>
+  <span>问题：如何使动画执行完之后使test的字体大小保持为24px</span>
+  <br/><br/><br/>
+  <span class="test backwards">测试的文字</span>
+    <span class="test forwards">测试的文字</span>
+</body>
+</html>
