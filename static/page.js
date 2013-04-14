@@ -1,10 +1,7 @@
 /**
  * Created with JetBrains WebStorm.
  * User: Tianyi(99)
- * Date: 13-3-23
- * Time: 上午10:53
+ * Date: 13-4-14
+ * Time: 下午11:38
  * To change this template use File | Settings | File Templates.
  */
-
-var c = new mouseRecord('middle', 'http://localhost:8888/');
-c.init();
