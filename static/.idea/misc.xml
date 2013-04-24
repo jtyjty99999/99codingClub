@@ -17,9 +17,6 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="false" useClasspath="true" />
   </component>
-  <component name="ProjectResources">
-    <default-html-doctype>jar:file:\D:\Program Files\JetBrains\WebStorm 5.0.4\lib\webide.jar!\resources\html5-schema\html5.rnc</default-html-doctype>
-  </component>
   <component name="ProjectRootManager" version="2" />
   <component name="masterDetails">
     <states>
