@@ -1,39 +1,29 @@
-define(function(){
-function each(a, f) {
-                for (var i = a.length;i --;)
-                        f.call(a[i], i, a);
-        };
+function customEvent() {
+    this.eventCollection = {};
 }
-var eop = {
-	addHandler : function (oElement, sEvent, fnHandler) {
-		oElement.addEventListener ? oElement.addEventListener(sEvent, fnHandler, false) : (oElement["_" + sEvent + fnHandler] = fnHandler, oElement[sEvent + fnHandler] = function () {
-			oElement["_" + sEvent + fnHandler]()
-		}, oElement.attachEvent("on" + sEvent, oElement[sEvent + fnHandler]))
-	},
-	removeHandler : function (oElement, sEvent, fnHandler) {
-		oElement.removeEventListener ? oElement.removeEventListener(sEvent, fnHandler, false) : oElement.detachEvent("on" + sEvent, oElement[sEvent + fnHandler])
-	},
-	addLoadHandler : function (fnHandler) {
-		this.addHandler(window, "load", fnHandler)
-	},
-	getEv : function (event) {
-		return event ? event : window.event;
-	},
-	getTarget : function (event) {
-		return event.target || event.srcElement;
-	},
-	delegate : function (worker, ev, group) {
-		each(group, function (i) {
-			eop.addHandler(worker, ev, eop.fns[group[i]['fn']] = function (event) {
-				event = eop.getEv(event);
-				var target = eop.getTarget(event);
-				(' ' + target.className.toLowerCase() + ' ')
-				.indexOf(' ' + group[i]['selector'] + ' ') !== -1 &&
-				group[i]['fn'](eop.getTarget(event));
-			})
-		})
-	},
-	fns : []
+customEvent.prototype = {
+    trigger: function (eve, news) {
+        this.eventCollection[eve].forEach(function (fn) {
+            fn.call(this, news);
+        })
+    },
+    on: function (eve, fnHandle) {
+
+        if (typeof(this.eventCollection[eve]) == 'undefined') {
+            this.eventCollection[eve] = []
+        }
+        this.eventCollection[eve].push(fnHandle);
+    },
+    off: function (eve, fnHandle) {
+        if (this.eventCollection[eve] instanceof Array) {
+            var handlers = this.eventCollection[eve];
+            for (var i = 0, len = handlers.length; i < len; i++) {
+                if (handlers[i] === fnHandle) {
+                    break;
+                }
+            }
+            handlers.splice(i, 1);
+        }
+    }
+
 }
-return eop
-})
