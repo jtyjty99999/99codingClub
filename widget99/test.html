@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+    <style type="text/css">
+        #box{
+            display:none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+<button id="hello">hehhe</button>
+<div id="box"></div>
+
+<script type="text/javascript">
+
+
+        function popUpWidget(config){
+           //设置初始操作元素与状态量
+            var _this=this;
+            _this.trigger = this.config.trigger;
+            _this.showed='false';
+            _this.popUpBox = this.config.popUpBox;
+            //配置FSM
+            var popWidgetFSMConf = {
+                initState:'normal',//初始化状态
+                states:{//组件状态
+                    "normal":{//此状态下用户可做的操作
+                        showthis:function(){
+                            _this.show();
+                            return "showed"//操作后返回的结果
+                        }
+                    },
+                    "showed":{
+                        hidethis:function(){
+                            _this.hide();
+                            return "normal"
+                        }
+
+                    }
+                },
+                userBehavior:{//定义用户操作
+                    "showthis":function(callback){//将用户操作对组件的影响传入callback
+                        document.onclick = function(e){
+                            if(e.target=_this.trigger&&_this.showed=='false'){
+                                callback();
+                            }
+                        }
+                    },
+                    "hidethis":function(callback){
+                        document.onclick = function(e){
+                            if(e.target=_this.trigger&&_this.showed=="true"){
+                                callback();
+                            }
+                        }
+                    }
+                }
+            }
+            _this.FSM = new FSMDriver(popWidgetFSMConf);
+        }
+    popUpWidget.prototype={//定义组件操作
+        show:function(){//显示组件
+            _this.popUpBox.style.display="block";
+            _this.showed = 'true';
+        },
+        hide:function(){//隐藏组件
+            _this.popUpBox.style.display="none";
+            _this.showed = 'false';
+        }
+    }
+
+    function FSMDriver(conf){//有限状态机驱动器
+        this.conf = conf;
+        this.current = this.conf.initState;//初始化
+        this.next = null;//下个状态
+        this.states = this.conf.states;//所有状态
+        this.userBehavior=this.conf.userBehavior;//用户行为
+        this.customEventCollection = {};//自定义事件集合，用于驱动用户行为
+        this.initEvent();
+    }
+    FSMDriver.prototype = {
+        trigger: function (eve, news) {//自定义事件模块的触发
+            this.customEventCollection[eve].forEach(function (fn) {
+                fn.call(this, news);
+            })
+        },
+        on: function (eve, fnHandle) {//自定义事件绑定
+
+            if (typeof(this.eventCollection[eve]) == 'undefined') {
+                this.customEventCollection[eve] = [];
+            }
+            this.customEventCollection[eve].push(fnHandle);
+
+        },
+        off: function (eve, fnHandle) {//自定义事件解除绑定
+            if (this.customEventCollection[eve] instanceof Array) {
+                var handlers = this.customEventCollection[eve];
+                for (var i = 0, len = handlers.length; i < len; i++) {
+                    if (handlers[i] === fnHandle) {
+                        break;
+                    }
+                }
+                handlers.splice(i, 1);
+            }
+        },
+        driveToStatus:function(event){//进行状态转换
+            var activeUserBehaviorFunction =this.states[this.current][event];
+            this.current = activeUserBehaviorFunction.call(this,event);
+        }
+       initEvent:function(){
+            var _this = this,userBehavior = this.userBehavior;
+           for(var singleBehavior in userBehavior){
+
+               (function(eve){
+                   eve.call(_this,function(event){
+                       _this.trigger(event,'hello');
+                   })
+                _this.on(eve,_this.driveToStatus);
+               }(singleBehavior))
+           }
+
+        }
+
+
+    }
+</script>
+<script type="text/javascript">
+    var popTest  = new popUpWidget({
+        trigger:document.getElementById('hello'),
+        popUpBox:document.getElementById('box')
+    });
+
+</script>
+</body>
+</html>
+</script>
+</body>
+</html>
