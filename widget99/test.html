@@ -17,11 +17,64 @@
 <div id="box"></div>
 
 <script type="text/javascript">
+    function FSMDriver(conf){//有限状态机驱动器
+        this.conf = conf;
+        this.current = this.conf.initState;//初始化
+        this.next = null;//下个状态
+        this.states = this.conf.states;//所有状态
+        this.userBehavior=this.conf.userBehavior;//用户行为
+        this.customEventCollection = {};//自定义事件集合，用于驱动用户行为
+        this.initEvent();
+    }
+    FSMDriver.prototype = {
+        trigger: function (eve, news) {//自定义事件模块的触发
+            this.customEventCollection[eve].forEach(function (fn) {
+                fn.call(this, news);
+            })
+        },
+        on: function (eve, fnHandle) {//自定义事件绑定
+            if (typeof(this.customEventCollection[eve]) == 'undefined') {
+                this.customEventCollection[eve] = [];
+            }
+            this.customEventCollection[eve].push(fnHandle);
 
+        },
+        off: function (eve, fnHandle) {//自定义事件解除绑定
+            if (this.customEventCollection[eve] instanceof Array) {
+                var handlers = this.customEventCollection[eve];
+                for (var i = 0, len = handlers.length; i < len; i++) {
+                    if (handlers[i] === fnHandle) {
+                        break;
+                    }
+                }
+                handlers.splice(i, 1);
+            }
+        },
+        driveToStatus:function(event){//进行状态转换
+            var activeUserBehaviorFunction =this.states[this.current][event];
+            this.current = activeUserBehaviorFunction.call(this,event);
+        },
+        initEvent:function(){
+            var _this = this,userBehavior = _this.userBehavior;
+            for(var singleBehavior in userBehavior){
+                (function(eve){
+                    console.log(userBehavior[eve]);//这里怎么没执行呢。。。
+                    userBehavior[eve].call(_this,function(eve){
+                        _this.trigger(eve,'hello');
+                    })
+                    _this.on(eve,_this.driveToStatus);
+                }(singleBehavior))
+            }
+
+        }
+
+
+    }
 
         function popUpWidget(config){
            //设置初始操作元素与状态量
             var _this=this;
+            this.config = config;
             _this.trigger = this.config.trigger;
             _this.showed='false';
             _this.popUpBox = this.config.popUpBox;
@@ -45,12 +98,13 @@
                 },
                 userBehavior:{//定义用户操作
                     "showthis":function(callback){//将用户操作对组件的影响传入callback
+                        console.log(callback,_this)
                         document.onclick = function(e){
                             if(e.target=_this.trigger&&_this.showed=='false'){
                                 callback();
-                            }
-                        }
+                            }}
                     },
+
                     "hidethis":function(callback){
                         document.onclick = function(e){
                             if(e.target=_this.trigger&&_this.showed=="true"){
@@ -73,66 +127,14 @@
         }
     }
 
-    function FSMDriver(conf){//有限状态机驱动器
-        this.conf = conf;
-        this.current = this.conf.initState;//初始化
-        this.next = null;//下个状态
-        this.states = this.conf.states;//所有状态
-        this.userBehavior=this.conf.userBehavior;//用户行为
-        this.customEventCollection = {};//自定义事件集合，用于驱动用户行为
-        this.initEvent();
-    }
-    FSMDriver.prototype = {
-        trigger: function (eve, news) {//自定义事件模块的触发
-            this.customEventCollection[eve].forEach(function (fn) {
-                fn.call(this, news);
-            })
-        },
-        on: function (eve, fnHandle) {//自定义事件绑定
-
-            if (typeof(this.eventCollection[eve]) == 'undefined') {
-                this.customEventCollection[eve] = [];
-            }
-            this.customEventCollection[eve].push(fnHandle);
-
-        },
-        off: function (eve, fnHandle) {//自定义事件解除绑定
-            if (this.customEventCollection[eve] instanceof Array) {
-                var handlers = this.customEventCollection[eve];
-                for (var i = 0, len = handlers.length; i < len; i++) {
-                    if (handlers[i] === fnHandle) {
-                        break;
-                    }
-                }
-                handlers.splice(i, 1);
-            }
-        },
-        driveToStatus:function(event){//进行状态转换
-            var activeUserBehaviorFunction =this.states[this.current][event];
-            this.current = activeUserBehaviorFunction.call(this,event);
-        }
-       initEvent:function(){
-            var _this = this,userBehavior = this.userBehavior;
-           for(var singleBehavior in userBehavior){
-
-               (function(eve){
-                   eve.call(_this,function(event){
-                       _this.trigger(event,'hello');
-                   })
-                _this.on(eve,_this.driveToStatus);
-               }(singleBehavior))
-           }
-
-        }
-
-
-    }
 </script>
 <script type="text/javascript">
-    var popTest  = new popUpWidget({
-        trigger:document.getElementById('hello'),
-        popUpBox:document.getElementById('box')
-    });
+    var config = {
+        'trigger':document.getElementById('hello'),
+        'popUpBox':document.getElementById('box')
+        }
+    console.log(config.trigger)
+    var popTest  = new popUpWidget(config);
 
 </script>
 </body>
