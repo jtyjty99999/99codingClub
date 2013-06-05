@@ -30,6 +30,26 @@
             return f.apply(null, a);
         };
     },
+	before : function (f) {
+		var _self = this;
+		return function () {
+			if (f.apply(this, arguments) === false) {
+				return false;
+			}
+			return _self.apply(this, arguments)
+		};
+	},
+	before : function (f) {
+		var _self = this;
+		return function () {
+			var result = return _self.apply(this, arguments)
+				if ( === false) {
+					return false;
+				}
+				f.apply(this, arguments);
+			return result;
+		};
+	},
     connect:function (scope, fnFrom, fnTo) {
         "use strict"
         var objFn = fnFrom.split('.');
