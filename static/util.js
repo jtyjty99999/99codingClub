@@ -5,12 +5,18 @@
  * Time: 上午9:44
  * To change this template use File | Settings | File Templates.
  */
+ 
 var tools = {
     sendData:function (data, path) {
         var url = tools.addQueryUrlParam(data, path)
         var img = new Image();
+        var window[rnd_id] = img; // 全局变量引用,防止浏览器垃圾回收机制清理img对象，提高打点成功率
         img.src = url;
-        img = null;
+        img.onload = img.onerror = function () {
+            img = null;
+            window[rnd_id] = null; // 删除全局变量引用
+        }
+        
     },
     addQueryUrlParam:function (url, data) {
         for (key in data) {
