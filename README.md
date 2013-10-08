@@ -2,11 +2,11 @@
 ==============
 我叫姜天意 网名99,新浪微博<http://weibo.com/serendipity9>
 
-我的博客是<99jty.com>
+我的博客是<http://99jty.com>
 
 我就职于上海语镜汽车信息技术有限公司，任前端技术负责人。
 
-我平时非常喜欢阅读跟使用大量的新技术，并引用到项目中,从yui css grid到bootstrap,从extjs到highchart,从knockoutjs到angularjs..
+我热爱这个行业，平时非常喜欢接触并使用大量的新技术，并引用到项目中,从yui css grid到bootstrap,从extjs到highchart,从knockoutjs到angularjs..
 
 我也在公司推进自动化技术(ant与gruntjs),培训新人使用nodejs,目前公司所有的前端项目均使用nodejs作为后端语言驱动.
 
