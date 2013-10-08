@@ -26,7 +26,6 @@
 这是我最近维护的一个javascript工具库,也是我平时工作与学习的积累.
 
 这个库每个模块都包含很丰富的功能,这些功能不是一两个类库可以提供的了的，但是实际生产中又不需要载入很多功能，因此我根据模块分类,
-
 划分了array,animate Browser Connection  Css function  Node Number String Position Util  Event这些模块
 
 同时还提供了以下的附加组件
