@@ -52,6 +52,9 @@
  
  <https://speakerdeck.com/w3cplus/qian-duan-zi-dong-hua-gong-ju-tan-suo>
  
+ 我在11月作为嘉宾在广州webrebuild分享数据可视化
+<http://webrebuild.org/2013/gz/guest.html>
+ 
  
  我熟悉数据可视化相关的前端技术如d3js,之前在civn发过一系列的d3js的教程,后来站点关闭,转移到<http://www.d3js.cn/>
  
