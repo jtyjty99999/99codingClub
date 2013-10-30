@@ -102,6 +102,7 @@ function adjustPath(base, user) {
  	} else {//没名字，注册模块名，为模块文件绝对路径。
  		moduleName = getCurrentScript();
 		var factory = arguments[arguments.length-1];
+		
 		 if (l == 0) { //无依赖
  			reg(moduleName, factory); //直接注册,模块名为模块文件绝对路径
  		} else {
@@ -115,6 +116,7 @@ function adjustPath(base, user) {
  	}
  };
 window.require = function (deps, callback) {
+console.log(deps)
 	if (type(deps) == 'String') {
 	var absoluteUrl = adjustPath(base,deps)+'.js'
 		if (modules[absoluteUrl]) { //存在此模块
@@ -126,6 +128,7 @@ window.require = function (deps, callback) {
 			loadjs(absoluteUrl);
 		}
 	} else {
+
 		var l = deps.length,
 		i;
 		callbacks['fn']=callback;//利用最后加载的模块作为callback的属主

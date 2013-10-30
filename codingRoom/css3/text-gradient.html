@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>CSS3文字渐变</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+    body {
+        margin:0;
+        padding:0;
+        background:#fff;
+        font-family:"微软雅黑", Sans-Serif;
+        font-weight:900;
+        -webkit-font-smoothing:antialiased;
+        -webkit-text-stroke:1px transparent; /*山寨消锯齿方法，手机上看效果不好，PC webkit上看效果好*/
+    }
+    #wrap span.fg {
+        color:#f00; /*fallback*/
+        font-size:160px;
+        background:-webkit-gradient(linear, left top, right bottom, from(#f00), to(#00f));
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+    }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <span class="fg">呵呵</span>
+    </div>
+</body>
+</html>

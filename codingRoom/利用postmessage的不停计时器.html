@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=320,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <title>后台页面更新测试 - meta refresh</title>
+</head>
+<body>
+    <div id="test" style="font-size:32px;"></div>
+    <script>
+        var count = 0,
+            test = document.getElementById('test');
+ 
+        window.addEventListener('message', function(e) {
+            if(e.data === 'refresh') {
+                count++;
+                test.innerHTML = count;
+                document.title = count;
+            }
+        }, false);
+ 
+        var duration = 1; /* 1s */
+ 
+        var iframe = document.createElement('iframe');//利用iframe,meta标签刷新部分,利用datasrc防止html请求.这样切换页面时还会继续刷新
+        iframe.style.display = 'none';
+        iframe.src = 'data:text/html,%3C%21DOCTYPE%20html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%09%3Cmeta%20charset%3D%22utf-8%22%20%2F%3E%0A%09%3Cmeta%20http-equiv%3D%22refresh%22%20content%3D%22'+ duration +'%22%20id%3D%22metarefresh%22%20%2F%3E%0A%09%3Ctitle%3Ex%3C%2Ftitle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%09%3Cscript%3Etop.postMessage%28%27refresh%27%2C%20%27%2A%27%29%3B%3C%2Fscript%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E';
+        document.body.insertBefore(iframe, document.body.childNodes[0]);
+    </script>
+</body>
+</html>
