@@ -6,5 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-var c = new mouseRecord('middle', 'http://localhost:8888/');
+var c = new recorder('left', 'http://localhost:8888/');
 c.init();
+c.initOperatorRecord();

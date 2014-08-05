@@ -10,7 +10,8 @@ var tools = {
     sendData:function (data, path) {
         var url = tools.addQueryUrlParam(data, path)
         var img = new Image();
-        var window[rnd_id] = img; // 全局变量引用,防止浏览器垃圾回收机制清理img对象，提高打点成功率
+		var rnd_id = Math.random();
+		window[rnd_id] = img; // 全局变量引用,防止浏览器垃圾回收机制清理img对象，提高打点成功率
         img.src = url;
         img.onload = img.onerror = function () {
             img = null;

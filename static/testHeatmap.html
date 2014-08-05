@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+    <style type="text/css">
+        .box{
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background:red
+        }
+    </style>
+<div class="box">
+<input type="button" value = "123" name = 'button'>
+<input type="text" name = 'help'>
+<input type="file" name = 'file'>
+<input type="color" name = 'color'>
+<input type="date" name = 'date'>
+</div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+<div class="box"></div>
+
+<div id="heatmapArea" style="width:1400px;height:800px;border:1px solid black"></div>
+<div style="width:200px;height:800px;position:absolute;right:0;top:0"><ul id="operator">
+<li><button id="runWithRecord">runWithRecord</button></li>
+</ul></div>
+<script type="text/javascript" src="heatmap.js"></script>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+
+
+	
+	function delay(time,data) {
+      
+		return function (callback) {
+			setTimeout(function () {
+				heatmap.store.addDataPoint(data.x, data.y, 1);
+				callback()
+			}, time)
+
+		}
+
+	}
+	
+function runOneByOne(go) {
+	return function(callback) {
+      function nextStep() {//定义一个next函数，这个函数主要是用来跑next
+      if (gen.next) {//先判断能不能跑
+		
+        var obj = gen.next() //跑一下试试
+        if (obj.done) { //发现结果显示ok了！
+          callback && callback()//执行最终的回调，这个执行不执行无所谓的
+        } else {
+			obj.value(nextStep)
+        }
+      }
+    }
+
+    var gen = go()//首先把内部*定义的函数生成一个generator
+    nextStep() //跑起来
+
+  }
+}
+
+	function run(time,data) {
+      
+		return function (callback) {
+			setTimeout(function () {
+				$('#operator').append('<li>'+data.type+':'+data.target+'</li>');
+				callback()
+			}, time)
+
+		}
+
+	}
+	var heatmap;
+	
+	$('#runWithRecord').on('click',function(){
+	
+	
+	
+			// heatmap configuration
+	var config = {
+		element : document.getElementById("heatmapArea"),
+		radius : 30,
+		opacity : 50,
+		legend : {
+			position : 'br',
+			title : 'Mouse Movement Distribution'
+		}
+	};
+
+	//creates and initializes the heatmap
+	heatmap = h337.create(config);
+	
+	
+	var data =c.getMousePos();
+	runOneByOne(function* () {
+
+	for (var i = 1, l = data.length; i < l; i++) {
+		console.log(data[i])
+
+		yield delay((data[i]['time'] - data[i - 1]['time']),data[i])
+
+	}
+
+})()
+
+var operator =c.getRecorded();
+
+	runOneByOne(function* () {
+
+	for (var j = 1, n = operator.length; j< n; j++) {
+
+		yield run((operator[j]['time'] - operator[j - 1]['time']),operator[j])
+
+	}
+
+})()
+	
+	
+	
+	
+	
+	
+	})
+	
+
+
+}
+   
+   
+   
+   
+</script>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript" src="mouse.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+</html>
+
