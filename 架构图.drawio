@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-04T11:47:53.401Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="Qp35Qx0GVetzYQRqk5ZJ" version="23.1.6" type="github" pages="12">
+<mxfile host="app.diagrams.net" modified="2024-03-04T11:58:51.157Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="SAxtir52asBNY__9eZVW" version="23.1.6" type="github" pages="12">
   <diagram name="核心大图" id="whuxYim7OVVLREUjJuhd">
     <mxGraphModel dx="1564" dy="1130" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -5499,10 +5499,11 @@
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="zUZdltUPpjL3CEjb-wnd-59" target="zUZdltUPpjL3CEjb-wnd-54">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
+              <mxPoint x="659" y="550" />
               <mxPoint x="659" y="430" />
               <mxPoint x="780" y="430" />
-              <mxPoint x="780" y="1080" />
-              <mxPoint x="185" y="1080" />
+              <mxPoint x="780" y="1120" />
+              <mxPoint x="185" y="1120" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -5546,7 +5547,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="zUZdltUPpjL3CEjb-wnd-74" value="昆仑coding 平台/erp搭建平台" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="60" y="390" width="257.5" height="30" as="geometry" />
+          <mxGeometry x="51.25" y="320" width="257.5" height="30" as="geometry" />
         </mxCell>
         <mxCell id="BVJC_XG-En-9C1w-qlk3-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="zUZdltUPpjL3CEjb-wnd-75" target="BVJC_XG-En-9C1w-qlk3-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -5617,7 +5618,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-8" value="应用架构支持多人多团队模块化开发" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="52.5" y="1100" width="257.5" height="30" as="geometry" />
+          <mxGeometry x="190" y="1089.5" width="257.5" height="30" as="geometry" />
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-9" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="918.34" y="795" width="250" height="250" as="geometry" />
@@ -5738,6 +5739,21 @@
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-52" value="API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1450.34" y="930" width="48" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-53" value="开发态扩展" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-56" value="运行态扩展" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="635" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-57" value="运行态配置" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="635" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-58" value="patch/补丁叠加" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="530" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-59" value="离线开发（线下debug，高低代码混合）830之后" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="870" y="430" width="280" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
