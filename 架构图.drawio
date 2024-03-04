@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-04T11:59:36.192Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="zSK1tSAdF2nkZZ-uaJHb" version="23.1.6" type="github" pages="12">
+<mxfile host="app.diagrams.net" modified="2024-03-04T12:53:44.151Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="JO1iuvqz0XmCYNKCVCvL" version="23.1.6" type="github" pages="12">
   <diagram name="核心大图" id="whuxYim7OVVLREUjJuhd">
     <mxGraphModel dx="1564" dy="1130" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -5342,7 +5342,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="erp搭建平台" id="08f4R91bi2vUjGsSZM7R">
-    <mxGraphModel dx="2370" dy="1954" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2174" dy="1999" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5553,7 +5553,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="zUZdltUPpjL3CEjb-wnd-74" value="昆仑coding 平台/erp搭建平台" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="51.25" y="320" width="257.5" height="30" as="geometry" />
+          <mxGeometry x="91.25999999999999" y="350" width="178.74" height="30" as="geometry" />
         </mxCell>
         <mxCell id="BVJC_XG-En-9C1w-qlk3-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="zUZdltUPpjL3CEjb-wnd-75" target="BVJC_XG-En-9C1w-qlk3-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
