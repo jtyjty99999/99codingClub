@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-04T11:46:49.674Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="XHez7ofAPrLilXPzQsNr" version="23.1.6" type="github" pages="12">
+<mxfile host="app.diagrams.net" modified="2024-03-04T11:47:53.401Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="Qp35Qx0GVetzYQRqk5ZJ" version="23.1.6" type="github" pages="12">
   <diagram name="核心大图" id="whuxYim7OVVLREUjJuhd">
     <mxGraphModel dx="1564" dy="1130" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -5700,12 +5700,6 @@
             <mxPoint x="1518.34" y="919.5" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="qlFZK1Cey1MTTsj4T8x4-36" value="权限" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="920.0000000000001" y="602" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="qlFZK1Cey1MTTsj4T8x4-37" value="登陆" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1071.68" y="602" width="120" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-39" value="JVM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1168.34" y="890" width="48" height="20" as="geometry" />
         </mxCell>
@@ -5720,9 +5714,6 @@
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-42" value="主数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1780" y="795" width="210" height="245" as="geometry" />
-        </mxCell>
-        <mxCell id="qlFZK1Cey1MTTsj4T8x4-44" value="运维" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1230" y="600" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-45" value="主数据" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2050" y="625" width="250" height="505" as="geometry" />
@@ -5741,6 +5732,12 @@
         </mxCell>
         <mxCell id="qlFZK1Cey1MTTsj4T8x4-50" value="权限" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2130" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-51" value="API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1168.34" y="930" width="48" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="qlFZK1Cey1MTTsj4T8x4-52" value="API" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1450.34" y="930" width="48" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
